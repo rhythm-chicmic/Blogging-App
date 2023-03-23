@@ -8,6 +8,9 @@ export const REGEX = {
     ALPHA_NUMERIC: /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/,
     ADDRESS: /^[a-zA-Z0-9\s,.'-]{3,}$/,
     NAME: /^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$/,
+    DOB: /[A-Z][a-z]{2}\s[A-Z][a-z]{2}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT[+-]\d{4}\s\(\w+\s\w+\s\w+\)/
+
+
 }
 export const PATHS = {
     AUTH: {
@@ -24,7 +27,7 @@ export const PATHS = {
       NAVBAR: 'navbar'
     }
   }
-  
+
   export const PARENT_PATHS = {
     DEFAULT: '',
     AUTH: 'auth',
