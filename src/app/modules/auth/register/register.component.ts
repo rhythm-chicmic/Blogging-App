@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-
+  hide = true;
+  startDate = new Date(1990, 0, 1);
 }

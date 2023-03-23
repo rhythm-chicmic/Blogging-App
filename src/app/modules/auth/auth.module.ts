@@ -8,11 +8,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { PARENT_PATHS, PATHS } from 'src/app/common/constants';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const routes:Routes=[
   { path: PARENT_PATHS.DEFAULT, redirectTo: PATHS.AUTH.LOGIN, pathMatch:'full' },
@@ -30,8 +34,12 @@ const routes:Routes=[
   ],
   imports: [
     CommonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatIconModule,
+    MatSelectModule,
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
