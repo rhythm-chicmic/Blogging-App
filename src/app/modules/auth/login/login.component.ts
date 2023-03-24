@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit{
       this.loggedIn = (user != null);
       const token = this.user.idToken
       this.service.googleLogin({token}).subscribe((res)=>console.log(res));
-      // console.log(this.user.idToken , this.loggedIn)
+     
     });
   }
 
@@ -47,8 +47,8 @@ get controls(){
 login(){
    if((this.LoginForm as FormGroup).valid){
     console.log(this.LoginForm.value);
-    this.service.login(this.LoginForm.value).subscribe((res)=>{
-      console.log(res)
+    this.service.login(this.LoginForm.value).subscribe((res:any)=>{
+      localStorage.setItem('token', res.data.token);
     })
     this.formDirective.resetForm();
     }

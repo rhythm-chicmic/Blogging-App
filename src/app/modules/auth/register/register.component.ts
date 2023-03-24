@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { REGEX } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 @Component({
@@ -12,6 +12,8 @@ export class RegisterComponent {
   startDate = new Date(1990, 0, 1);
   submitted = false;
   RegisterForm!:FormGroup
+  @ViewChild(FormGroupDirective)
+  formDirective!:FormGroupDirective;
   constructor(private fb:FormBuilder, private authService:AuthenticateService){
     this.initRegisterForm();
   }
@@ -34,6 +36,7 @@ Register(){
     this.authService.signUp(this.RegisterForm.value).subscribe((res)=>{
       console.log(res)
     })
+    this.formDirective.resetForm();
     }
     else{
       this.submitted =false;

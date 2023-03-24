@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { REGEX } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 
@@ -12,6 +12,8 @@ export class ResetPasswordComponent {
   hide=true;
   submitted=false;
   resetPasswordForm!:FormGroup
+  @ViewChild(FormGroupDirective)
+  formDirective!:FormGroupDirective;
   constructor(private fb:FormBuilder,private authService:AuthenticateService){
     this.initResetPasswordForm();
   }
@@ -25,6 +27,7 @@ export class ResetPasswordComponent {
     if((this.resetPasswordForm as FormGroup).valid){
       console.log(this.resetPasswordForm.value)
         this.authService.resetPassword(this.resetPasswordForm.value).subscribe(res=>console.log(res));
+        this.formDirective.resetForm();
     }
     else{
       this.submitted=true;
