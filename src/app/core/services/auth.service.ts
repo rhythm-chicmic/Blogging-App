@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { forgotPasswordModel, googleLoginModel, loginModel, signUpModel } from 'src/app/common/interfaces';
+import { forgotPasswordModel, googleLoginModel, loginModel, resetPasswordModel, signUpModel } from 'src/app/common/interfaces';
 import { APIS } from 'src/app/common/constants';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -21,5 +21,10 @@ export class AuthenticateService {
   }
   forgetPassword(data:forgotPasswordModel){
     return this.httpService.post(this.path+APIS.PASSWORD.FORGOT_PASSWORD,data);
+  }
+  resetPassword(data:resetPasswordModel){
+    console.log(this.path+APIS.PASSWORD.RESET_PASSWORD,data);
+    
+    return this.httpService.put(this.path+APIS.PASSWORD.RESET_PASSWORD,data);
   }
 }

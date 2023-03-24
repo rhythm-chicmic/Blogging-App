@@ -52,8 +52,8 @@ export const PATHS = {
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
-      CHANGE_PASSWORD: "api/v1/password/changePassword",
-      RESET_PASSWORD: "api/v1/password/resetPassword"
+      CHANGE_PASSWORD: "/api/v1/password/changePassword",
+      RESET_PASSWORD: "/api/v1/password/resetPassword"
     }
   }
   export const STORAGE_KEYS={

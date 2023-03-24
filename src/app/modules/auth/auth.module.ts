@@ -11,15 +11,18 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
+import { HttpRequestInterceptor } from 'src/app/core/interceptors/http-request.interceptor';
 
 const routes:Routes=[
   { path: PARENT_PATHS.DEFAULT, redirectTo: PATHS.AUTH.LOGIN, pathMatch:'full' },
@@ -53,12 +56,14 @@ const routes:Routes=[
       }
     } as SocialAuthServiceConfig,
   },
+  {provide:HTTP_INTERCEPTORS ,useClass:HttpRequestInterceptor,multi:true}
 ],
   imports: [
     CommonModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatDividerModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatIconModule,

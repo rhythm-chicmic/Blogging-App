@@ -28,3 +28,7 @@ export interface updatePasswordModel {
 export interface googleLoginModel {
     token: string
 }
+
+export interface resetPasswordModel{
+    newPassword:string
+}
