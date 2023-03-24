@@ -56,4 +56,7 @@ export const PATHS = {
       RESET_PASSWORD: "api/v1/password/resetPassword"
     }
   }
+  export const STORAGE_KEYS={
+    TOKEN:'token'
+  }
 
