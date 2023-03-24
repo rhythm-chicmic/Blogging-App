@@ -2,6 +2,9 @@
     background-color: rgb(220, 184, 241);
     color: rgb(0, 0, 0);
   }
+  .mat-toolbar span {
+    margin-right: 16px; /* adjust the value as needed */
+  }
   .mat-button{
      color: white;
   }
@@ -16,4 +19,13 @@ button:hover{
 }
 .account_circle{
     transform: scale(2);
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: transparent;
+  border-radius: 5px;
+}
+mat-form-field{
+  background-color: transparent;
+  border-radius: 5px;
+
 }

@@ -1,1 +1,22 @@
-<p>login works!</p>
+<mat-card class="box">
+  <mat-card-content>
+    <form [formGroup]="LoginForm" (ngSubmit)="login()">
+      <mat-form-field class="example-full-width">
+        <input matInput type="email" placeholder="Email" name="username" formControlName="email">
+        <mat-error *ngIf="controls['email'].errors?.['pattern'] && controls['email'].touched">
+          Please provide a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" placeholder="Password"  name="password" formControlName="password">
+        <mat-error *ngIf="controls['password'].errors?.['pattern'] && controls['password'].touched">
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field >
+      <button mat-raised-button color="primary" [disabled]="LoginForm.invalid">Login</button>
+      <mat-error *ngIf="submitted===true">
+        Enter Valid Information
+      </mat-error>
+    </form>
+  </mat-card-content>
+</mat-card>
