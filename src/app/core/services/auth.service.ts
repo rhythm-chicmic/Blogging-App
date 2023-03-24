@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { loginModel, signUpModel } from 'src/app/common/interfaces';
+import { googleLoginModel, loginModel, signUpModel } from 'src/app/common/interfaces';
 import { APIS } from 'src/app/common/constants';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -16,8 +16,7 @@ export class AuthenticateService {
   signUp(data:signUpModel){
     return this.httpService.post(this.path+APIS.USER.REGISTER,data);
   }
-  googleLogin(data:string){
-    console.log(data);
+  googleLogin(data:googleLoginModel){
     return this.httpService.post(this.path+APIS.AUTH.GOOGLE_LOGIN,data);
   }
  

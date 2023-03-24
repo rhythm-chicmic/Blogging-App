@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit{
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-      const token = JSON.stringify(this.user.idToken)
-      this.service.googleLogin(token).subscribe((res)=>console.log(res));
+      const token = this.user.idToken
+      this.service.googleLogin({token}).subscribe((res)=>console.log(res));
       // console.log(this.user.idToken , this.loggedIn)
     });
   }

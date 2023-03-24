@@ -24,3 +24,6 @@ export interface updatePasswordModel {
     newPassword: string,
     confirmPassword: string,
 }
+export interface googleLoginModel {
+    token: string
+}
