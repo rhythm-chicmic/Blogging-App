@@ -20,3 +20,19 @@
     </form>
   </mat-card-content>
 </mat-card>
+
+
+<div  class="google_icon">
+    <mat-card class="cardStyle">
+        <h2>Login with Google</h2>
+    <asl-google-signin-button type='icon' size='large'></asl-google-signin-button>
+
+    </mat-card>
+    <div *ngIf="user">
+        <img src="{{user.photoUrl}}">
+        <div>
+          <h4>{{ user.name }}</h4>
+          <p>{{ user.email }}</p>
+        </div>
+      </div>
+</div>

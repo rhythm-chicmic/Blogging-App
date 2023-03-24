@@ -17,6 +17,8 @@ import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
 
 const routes:Routes=[
   { path: PARENT_PATHS.DEFAULT, redirectTo: PATHS.AUTH.LOGIN, pathMatch:'full' },
@@ -32,6 +34,24 @@ const routes:Routes=[
     ForgotPasswordComponent,
     ResetPasswordComponent
   ],
+  providers:[{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '249476113068-tef56b773urjb4g2urjem8r9a18v9s77.apps.googleusercontent.com'
+          )
+        }
+      ],
+      onError: (err) => {
+        console.error(err);
+      }
+    } as SocialAuthServiceConfig,
+  },
+],
   imports: [
     CommonModule,
     MatNativeDateModule,
@@ -42,6 +62,8 @@ const routes:Routes=[
     MatSelectModule,
     MatToolbarModule,
     MatInputModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule,
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
