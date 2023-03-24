@@ -14,5 +14,8 @@ export class NavbarComponent {
   signUp(){
     this.route.navigate([PATHS.AUTH.REGISTER]);
   }
+  write(){
+    this.route.navigate([PATHS.MAIN.BLOG_WRITE]);
+  }
 
 }
