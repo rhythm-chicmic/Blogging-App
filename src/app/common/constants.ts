@@ -23,8 +23,9 @@ export const PATHS = {
         DASHBOARD: 'home',
         PROFILE: 'profile',
     },
-    NAVBAR : {
-      NAVBAR: 'navbar'
+    SHARED:{
+      NAVBAR: 'navbar',
+      RE_DIRECT:'redirect'
     }
   }
 
@@ -32,6 +33,7 @@ export const PATHS = {
     DEFAULT: '',
     AUTH: 'auth',
     MAIN: 'main',
+    SHARED:'shared',
     WILDCARD: '**'
   }
   export const PATH_MATCH = {
