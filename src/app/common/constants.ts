@@ -39,4 +39,13 @@ export const PATHS = {
     PREFIX: 'prefix'
   }
 
+  export const APIS ={
+    AUTH :{
+      LOGIN:"/api/vi/auth/login",
+      GOOGLE_LOGIN:"/api/vi/auth/googleLogin",
+    },
+    USER:{
+      REGISTER:"/api/v1/user/registration"
+    }
+  }
 

@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-// import { environment } from 'src/environments/environment';
+import { loginModel, signUpModel } from 'src/app/common/interfaces';
+import { APIS } from 'src/app/common/constants';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private path:any;
-  constructor(private httpClient:HttpClient) {
+export class AuthenticateService {
+  private path = environment.BASE_URL;
+  constructor(private httpService:HttpClient) {}
   
-
-    // console.log(this.path,environment.BASE_URL,environment);
-    
-   }
-
-  LoginWithGoogle(credentials:string):Observable<any>{
-    const header = new HttpHeaders().set('Content-type','application/json');
-    return this.httpClient.post(this.path+"LoginWithGoogle",JSON.stringify(credentials),{headers:header});
+  login(data:loginModel){
+      return this.httpService.post(this.path+APIS.AUTH.LOGIN,data);
   }
+  signUp(data:signUpModel){
+    return this.httpService.post(this.path+APIS.USER.REGISTER,data);
+  }
+  googleLogin(data:string){
+    console.log(data);
+    return this.httpService.post(this.path+APIS.AUTH.GOOGLE_LOGIN,data);
+  }
+ 
 }

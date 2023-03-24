@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { REGEX } from 'src/app/common/constants';
+import { AuthenticateService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +12,7 @@ export class RegisterComponent {
   startDate = new Date(1990, 0, 1);
   submitted = false;
   RegisterForm!:FormGroup
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder, private authService:AuthenticateService){
     this.initRegisterForm();
   }
   initRegisterForm(){
@@ -29,7 +30,10 @@ get controls(){
 }
 Register(){
   if((this.RegisterForm as FormGroup).valid){
-    console.log(this.RegisterForm.value);
+    console.log(this.RegisterForm.value.dateOfBirth);
+    this.authService.signUp(this.RegisterForm.value).subscribe((res)=>{
+      console.log(res)
+    })
     }
     else{
       this.submitted =false;
