@@ -1,6 +1,6 @@
 import { Component, ViewChild,NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { REGEX } from 'src/app/common/constants';
+import { PATHS, REGEX } from 'src/app/common/constants';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
@@ -57,5 +57,8 @@ login(){
       this.formDirective.resetForm();
 
     }
+}
+forgetPassword(){
+  this.router.navigate([PATHS.AUTH.FORGOT_PASSWORD])
 }
 }

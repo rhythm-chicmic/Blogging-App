@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { googleLoginModel, loginModel, signUpModel } from 'src/app/common/interfaces';
+import { forgotPasswordModel, googleLoginModel, loginModel, signUpModel } from 'src/app/common/interfaces';
 import { APIS } from 'src/app/common/constants';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -19,5 +19,7 @@ export class AuthenticateService {
   googleLogin(data:googleLoginModel){
     return this.httpService.post(this.path+APIS.AUTH.GOOGLE_LOGIN,data);
   }
- 
+  forgetPassword(data:forgotPasswordModel){
+    return this.httpService.post(this.path+APIS.PASSWORD.FORGOT_PASSWORD,data);
+  }
 }

@@ -43,9 +43,15 @@ export const PATHS = {
     AUTH :{
       LOGIN:"/api/vi/auth/login",
       GOOGLE_LOGIN:"/api/vi/auth/googleLogin",
+      LOGOUT: "/api/vi/auth/logout"
     },
     USER:{
       REGISTER:"/api/v1/user/registration"
+    },
+    PASSWORD :{
+      FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
+      CHANGE_PASSWORD: "api/v1/password/changePassword",
+      RESET_PASSWORD: "api/v1/password/resetPassword"
     }
   }
 

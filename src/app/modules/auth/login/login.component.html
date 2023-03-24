@@ -1,4 +1,5 @@
 <mat-card class="box">
+    <h2>Login Here</h2>
   <mat-card-content>
     <form [formGroup]="LoginForm" (ngSubmit)="login()">
       <mat-form-field class="example-full-width">
@@ -19,7 +20,12 @@
       </mat-error>
     </form>
   </mat-card-content>
+  <mat-label>
+    Forget Password 
+    <a class="link" (click)="forgetPassword()">Click here</a>
+     </mat-label>
 </mat-card>
+<mat-divider></mat-divider>
 
 
 <div  class="google_icon">
@@ -35,4 +41,5 @@
           <p>{{ user.email }}</p>
         </div>
       </div>
+     
 </div>

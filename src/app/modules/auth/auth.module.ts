@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
@@ -25,6 +26,7 @@ const routes:Routes=[
   { path: PATHS.AUTH.LOGIN, component: LoginComponent },
   { path: PATHS.AUTH.REGISTER, component: RegisterComponent },
   { path: PATHS.AUTH.FORGOT_PASSWORD, component: ForgotPasswordComponent },
+  {path:PATHS.AUTH.RESET_PASSWORD,component:ResetPasswordComponent}
 ]
 
 @NgModule({
@@ -56,6 +58,7 @@ const routes:Routes=[
     CommonModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatDividerModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatIconModule,

@@ -12,6 +12,7 @@ export interface signUpModel {
 }
 export interface forgotPasswordModel {
     email: string,
+    url : string
 }
 export interface resetPasswordModel {
     token: string, // token we get on email on resetPassword link's querry
