@@ -16,6 +16,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { CardModule } from 'primeng/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DashboardScrollBlogsComponent } from './dashboard-scroll-blogs/dashboard-scroll-blogs.component';
+import { RecommendationScrollBlogsComponent } from './recommendation-scroll-blogs/recommendation-scroll-blogs.component';
 const routes:Routes=[
   {path:PATHS.SHARED.RE_DIRECT,component:ReRoutingComponent}
 ]
@@ -24,7 +25,8 @@ const routes:Routes=[
   declarations: [
     NavbarComponent,
     ReRoutingComponent,
-    DashboardScrollBlogsComponent
+    DashboardScrollBlogsComponent,
+    RecommendationScrollBlogsComponent
   ],
   imports: [
     MatChipsModule,
