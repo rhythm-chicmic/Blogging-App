@@ -17,5 +17,8 @@ export class NavbarComponent {
   write(){
     this.route.navigate([PATHS.MAIN.BLOG_WRITE]);
   }
+  bloggerClick(){
+    this.route.navigate([PATHS.MAIN.DASHBOARD])
+  }
 
 }
