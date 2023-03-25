@@ -43,6 +43,6 @@ const routes:Routes=[
     MatInputModule,
     RouterModule.forChild(routes)
   ],
-  exports:[NavbarComponent,ReRoutingComponent,DashboardScrollBlogsComponent]
+  exports:[NavbarComponent,ReRoutingComponent,DashboardScrollBlogsComponent,RecommendationScrollBlogsComponent]
 })
 export class SharedModule { }
