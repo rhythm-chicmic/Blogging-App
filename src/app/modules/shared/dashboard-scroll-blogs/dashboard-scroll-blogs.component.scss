@@ -3,6 +3,11 @@
   background-color:  rgb(255, 255, 255);
   display: table-row;
   width: 1%;
+
+}
+.example-card:hover {
+  background-color:rgb(226, 202, 247);
+  color: white;
 }
 
 .card-container{
@@ -17,12 +22,12 @@
 #tag{
   margin-left: 600px;
 }
-.tag1:hover{
+.image-hover:hover{
   transform:scale(1.01);
   border-radius:20px ;
   box-shadow: 0 0 20px grey;
 }
-.tag1{
+.image-hover{
   transition:transform 0.25s ease;
   transition: border-radius 0.25s ease;
   transition:box-shadow 0.25s ease;
