@@ -5,6 +5,7 @@ import { NgxEditorModule,schema } from 'ngx-editor';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
+import { MatButtonModule } from '@angular/material/button';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 
@@ -18,6 +19,7 @@ const routes:Routes=[
     DashboardComponent
   ],
   imports: [
+    MatButtonModule,
     CommonModule,
     ReactiveFormsModule,
     NgxEditorModule.forRoot({

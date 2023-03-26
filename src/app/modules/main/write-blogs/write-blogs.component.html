@@ -3,5 +3,6 @@
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
     <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
   </div>
-  <button >Submit</button>
+  <button mat-raised-button color="accent" [disabled]="writeForm.invalid">Submit</button>
+
 </form>
