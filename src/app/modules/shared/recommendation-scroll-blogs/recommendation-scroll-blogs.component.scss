@@ -1,0 +1,19 @@
+mat-card{
+  //on hover make it bigger
+  transition:transform 0.25s ease;
+  transition: border-radius 0.25s ease;
+  transition:box-shadow 0.25s ease;
+  cursor: pointer;
+}
+mat-card:hover{
+  transform:scale(1.01);
+  border-radius:20px ;
+  box-shadow: 0 0 20px grey;
+
+}
+.rec-img{
+  object-fit: fill;
+  width: 150px;
+  height: 100px;
+  background-position: 50% 50%;
+}
