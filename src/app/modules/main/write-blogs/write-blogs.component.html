@@ -1,4 +1,7 @@
-<div class="NgxEditor__Wrapper">
-    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-    <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
+<form [formGroup]="writeForm" (ngSubmit)="OnSubmit()">
+  <div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
   </div>
+  <button >Submit</button>
+</form>
