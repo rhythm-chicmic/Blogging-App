@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class AuthenticateService {
   private path = environment.BASE_URL;
   constructor(private httpService:HttpClient) {}
-  
+
   login(data:loginModel){
       return this.httpService.post(this.path+APIS.AUTH.LOGIN,data);
   }
@@ -23,8 +23,10 @@ export class AuthenticateService {
     return this.httpService.post(this.path+APIS.PASSWORD.FORGOT_PASSWORD,data);
   }
   resetPassword(data:resetPasswordModel){
-    console.log(this.path+APIS.PASSWORD.RESET_PASSWORD,data);
-    
     return this.httpService.put(this.path+APIS.PASSWORD.RESET_PASSWORD,data);
   }
+  logOut(){
+    return this.httpService.get(this.path+APIS.AUTH.LOGOUT);
+  }
+
 }

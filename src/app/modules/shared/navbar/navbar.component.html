@@ -13,8 +13,8 @@
      <a mat-button (click)="signIn()">Sign In</a>
      <button mat-button [matMenuTriggerFor]="menu"><mat-icon class="account_circle">account_circle</mat-icon></button>
      <mat-menu #menu="matMenu">
-      <button mat-menu-item>View Profile</button>
-      <button mat-menu-item>Sign Out</button>
+      <button mat-menu-item (click)="ViewProfile()">View Profile</button>
+      <button mat-menu-item (click)="SignOut()">Sign Out</button>
     </mat-menu>
 
    </mat-toolbar>
