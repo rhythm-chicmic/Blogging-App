@@ -1,6 +1,6 @@
 <h1 style="font-size: 90px; margin-top: inherit; margin: 0 0 98px;text-align: justify; padding-left: 20px;">New Blog EveryDay</h1>
 
-<ng-container class="card-container" *ngFor="let blog of blogPost">
+<ng-container class="card-container" *ngFor="let blog of blogPost" >
   <mat-card class="example-card">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <mat-card-header>
@@ -10,7 +10,7 @@
         <mat-card-title>{{blog.blog.title}}</mat-card-title>
         <mat-card-subtitle>Dog Breed</mat-card-subtitle>
       </mat-card-header>
-      <mat-chip id="tag" disabled style="background-color: rgb(255, 0, 0);height: 22px;">
+      <mat-chip id="tag" disabled style="background-color: rgb(255, 0, 0); height: 22px;">
         <mat-label style="color:white">Dog</mat-label>
       </mat-chip>
       <button mat-icon-button>
@@ -18,27 +18,26 @@
       </button>
     </div>
     <hr>
-    <div class="" style="text-align: center; word-wrap: break-word;">
-      <img class="image-hover" mat-card-image  width="700px" src="'http://192.180.2.128:4242'+blog.blog."
+    <div style="text-align: center;">
+      <img class="image-hover" mat-card-image  width="700px"
+      src="'http://192.180.2.128:4242'+blog.blog.image"
         alt="Photo of a Shiba Inu">
     </div>
- <div > 
-    <mat-card-content >
-         <div  [innerHTML]="blog.blog.content" style="overflow: hidden;word-break: break-all;  word-wrap: initial; width: 300px;"></div>
-     
-      <p style="font-style: italic;">{{blog.blog.createdAt |date}} <span>17hrs</span></p>
+    <mat-card-content style="height: 150px; overflow: auto;">
+      <div [innerHTML]="blog.blog.content" style="word-wrap: break-word; "> </div>
+      <p style="font-style: italic;">{{blog.blog.createdAt |date}}<span>17hrs</span></p>
     </mat-card-content>
-  </div>
     <hr>
     <mat-card-actions>
-      <button mat-button><mat-icon>thumb_up</mat-icon>{{blog.blog.likes}}</button>
-      <button mat-button><mat-icon>thumb_down</mat-icon> {{blog.blog.dislikes}}</button>
+      <button mat-button><mat-icon>thumb_up</mat-icon>{{blog.blog.likes}} Likes</button>
+      <button mat-button><mat-icon>thumb_down</mat-icon>  {{blog.blog.dislikes}} Dislikes</button>
     </mat-card-actions>
   </mat-card>
-  <hr>
-  <hr>
 
-  <!-- <mat-card class="example-card">
+  <hr>
+  <hr>
+<!--
+   <mat-card class="example-card">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
