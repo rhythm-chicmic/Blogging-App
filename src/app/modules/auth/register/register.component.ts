@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { REGEX } from 'src/app/common/constants';
+import { Router } from '@angular/router';
+import { PATHS, REGEX } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent {
   RegisterForm!:FormGroup
   @ViewChild(FormGroupDirective)
   formDirective!:FormGroupDirective;
-  constructor(private fb:FormBuilder, private authService:AuthenticateService){
+  constructor(private fb:FormBuilder, private authService:AuthenticateService,private router:Router){
     this.initRegisterForm();
   }
   initRegisterForm(){
@@ -37,6 +38,7 @@ Register(){
       console.log(res)
     })
     this.formDirective.resetForm();
+    this.router.navigate([PATHS.MAIN.DASHBOARD]);
     }
     else{
       this.submitted =false;

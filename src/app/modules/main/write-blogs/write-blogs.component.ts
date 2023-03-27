@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Editor,Toolbar,Validators } from 'ngx-editor';
+import { PATHS } from 'src/app/common/constants';
 @Component({
   selector: 'app-write-blogs',
   templateUrl: './write-blogs.component.html',
@@ -10,7 +12,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   editor!: Editor;
   writeForm!:FormGroup
   html!: '';
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder,private router:Router){
     this.initWriteForm();
   }
   toolbar: Toolbar = [
@@ -31,6 +33,8 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
   OnSubmit(){
     console.log(this.writeForm.value);
+    this.router.navigate([PATHS.MAIN.DASHBOARD])
+    
   }
 
   ngOnInit(): void {

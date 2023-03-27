@@ -36,7 +36,11 @@ export class LoginComponent implements OnInit{
       this.user = user;
       this.loggedIn = (user != null);
       const token = this.user.idToken
-      this.service.googleLogin({token}).subscribe((res)=>console.log(res));
+      this.service.googleLogin({token}).subscribe((res)=>{
+        console.log(res)
+        this.router.navigate([PATHS.MAIN.DASHBOARD])
+      });
+      
      
     });
   }
@@ -51,10 +55,10 @@ login(){
       localStorage.setItem('token', res.data.token);
     })
     this.formDirective.resetForm();
+    this.router.navigate([PATHS.MAIN.DASHBOARD]);
     }
     else{
       this.submitted =false;
-      this.formDirective.resetForm();
 
     }
 }

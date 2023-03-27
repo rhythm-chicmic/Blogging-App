@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { REGEX } from 'src/app/common/constants';
+import { Router } from '@angular/router';
+import { PATHS, REGEX } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class ResetPasswordComponent {
   resetPasswordForm!:FormGroup
   @ViewChild(FormGroupDirective)
   formDirective!:FormGroupDirective;
-  constructor(private fb:FormBuilder,private authService:AuthenticateService){
+  constructor(private fb:FormBuilder,private authService:AuthenticateService,private router:Router){
     this.initResetPasswordForm();
   }
   initResetPasswordForm(){
@@ -28,6 +29,7 @@ export class ResetPasswordComponent {
       console.log(this.resetPasswordForm.value)
         this.authService.resetPassword(this.resetPasswordForm.value).subscribe(res=>console.log(res));
         this.formDirective.resetForm();
+        this.router.navigate([PATHS.AUTH.LOGIN]);
     }
     else{
       this.submitted=true;
