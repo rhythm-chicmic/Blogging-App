@@ -64,7 +64,7 @@ export const PATHS = {
       BLOG_POST: "/api/blog"
     },
     FILE:{
-      FILE_POST:"/api/file/profileimage"
+      FILE_POST:"/api/file/image"
     }
   }
   export const STORAGE_KEYS={

@@ -17,4 +17,8 @@ export class WriteBlogService {
     return this.httpService.post(this.path+APIS.WRITE_BLOG.BLOG_POST,data)
   }
 
+  postImage(data:FormData){
+    return this.httpService.post(this.path+APIS.FILE.FILE_POST,data);
+  }
+
 }

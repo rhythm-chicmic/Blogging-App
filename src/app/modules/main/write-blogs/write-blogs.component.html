@@ -11,7 +11,6 @@
       Field is Required
     </mat-error>
   </mat-form-field>
-
   <mat-form-field class="example-chip-list" appearance="fill">
     <mat-label>Enter Tags</mat-label>
     <mat-chip-grid #chipGrid aria-label="Enter Tags">
@@ -30,14 +29,27 @@
              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
              [matChipInputAddOnBlur]="addOnBlur"
              (matChipInputTokenEnd)="add($event)"/> 
-             <mat-error *ngIf="tags.length>4">
-              Limit Reached 
+             <mat-error *ngIf="controls['tags'].errors?.['required'] && controls['tags'].touched">
+              Field is Required
              </mat-error>
     </mat-chip-grid>
   </mat-form-field>
+    
+  <div>
+    <form [formGroup]="imageForm" (ngSubmit)="imageFormSubmit()">
+    <button type="button" mat-raised-button color="accent" (click)="fileInput.click()">Choose Image</button>
+    <input hidden  #fileInput type="file" id="file"  (change)="readImage($event)" formControlName="file">
+    <mat-label >
+      I{{file ? file.data  : ' Select a Image from here' }}
+    </mat-label>
+  
+  </form>
+  </div>
+  <br>
+
   <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-    <ngx-editor [editor]="editor" formControlName="content"> </ngx-editor>
+    <ngx-editor class="content" [editor]="editor" formControlName="content"> </ngx-editor>
     <mat-error *ngIf="controls['content'].errors?.['required'] && controls['content'].touched">
       Field is Required
     </mat-error>
@@ -45,3 +57,5 @@
   <button mat-raised-button color="accent" [disabled]="writeForm.invalid">Submit</button>
 
 </form>
+
+ 

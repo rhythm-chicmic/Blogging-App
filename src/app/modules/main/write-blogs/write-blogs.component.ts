@@ -18,7 +18,10 @@ export interface Tags {
 
 export class WriteBlogsComponent implements OnInit, OnDestroy{
   editor!: Editor;
+  file:any;
   writeForm!:FormGroup
+  image:any;
+  imageForm!:FormGroup
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   html!: '';
@@ -26,7 +29,17 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
   constructor(private fb:FormBuilder,private router:Router,private WriteBlogService:WriteBlogService){
     this.initWriteForm();
+    this.initImageForm();
   }
+
+  initImageForm(){
+    this.imageForm=this.fb.group({
+      file:new FormControl('',Validators.required),
+      type:new FormControl(2)
+
+    })
+  }
+
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -41,16 +54,22 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
     this.writeForm =this.fb.group({
       content: new FormControl('',validators.required()),
       title: new FormControl('',[Validators.required,Validators.pattern(REGEX.NAME)]),
-      tags: new FormArray([], Validators.max(4))
+      tags: new FormArray([]),
+      previewImage:new FormControl('')
+  
     });
   }
 
 
   OnSubmit(){
     this.writeForm.value.tags.push(...this.tags);
+    this.writeForm.value.previewImage=this.image;
     console.log(this.writeForm.value);
     this.WriteBlogService.postBlog(this.writeForm.value).subscribe(res=>console.log(res));
     // this.router.navigate([PATHS.MAIN.DASHBOARD])
+  }
+  get imageControls(){
+    return this.imageForm.controls;
   }
   get controls(){
     return this.writeForm.controls;
@@ -58,6 +77,14 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.editor = new Editor();
+  }
+
+  //-------------------------------------------------------------------------------------
+  readImage(fileEvent:any){
+    console.log(fileEvent);
+    this.image= fileEvent.srcElement.files[0];
+    console.log(this.image);
+    this.imageFormSubmit();
   }
 
 
@@ -96,6 +123,20 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
       this.tags[index].tagName = value;
     }
   }
+//------------------------------------------------------------
+
+imageFormSubmit(){
+    const data = new FormData();
+    data.append('file',this.image);
+    data.append('type',this.imageForm.value.type);
+    this.WriteBlogService.postImage(data).subscribe((res:any)=>{
+      console.log(res.data);
+      this.file=res;
+      this.image= res.data;
+      });
+    
+  }
+
 
   // make sure to destory the editor
   ngOnDestroy(): void {

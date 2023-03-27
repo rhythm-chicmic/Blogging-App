@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit{
   user!:SocialUser;
   loggedIn:any;
   submitted = false;
-  constructor(private fb:FormBuilder, private router :Router,private authService:SocialAuthService ,private service:AuthenticateService){
+  constructor(private fb:FormBuilder, private router :Router,public authService:SocialAuthService ,private service:AuthenticateService){
 
     this.initLoginForm();
   }
@@ -55,6 +55,7 @@ login(){
    if((this.LoginForm as FormGroup).valid){
     console.log(this.LoginForm.value);
     this.service.login(this.LoginForm.value).subscribe((res:any)=>{
+      console.log(res)
       localStorage.setItem('token', res.data.token);
     })
     this.formDirective.resetForm();

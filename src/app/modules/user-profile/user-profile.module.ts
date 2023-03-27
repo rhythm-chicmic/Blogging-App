@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'primeng/api';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserBlogsComponent } from './user-blogs/user-blogs.component';
 
 
 const routes:Routes=[
@@ -15,7 +17,9 @@ const routes:Routes=[
 
 @NgModule({
   declarations: [
-    UserPageComponent
+    UserPageComponent,
+    UserDetailsComponent,
+    UserBlogsComponent
   ],
   imports: [
     CommonModule,
