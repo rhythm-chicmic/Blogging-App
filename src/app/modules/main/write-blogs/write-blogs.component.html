@@ -1,5 +1,3 @@
-
-
 <form [formGroup]="writeForm" (ngSubmit)="OnSubmit()">
   <mat-form-field class="example-full-width">
     <mat-label>Title</mat-label>
@@ -49,7 +47,7 @@
 
   <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-    <ngx-editor class="content" [editor]="editor" formControlName="content"> </ngx-editor>
+    <ngx-editor  class="content" [editor]="editor" formControlName="content"></ngx-editor>
     <mat-error *ngIf="controls['content'].errors?.['required'] && controls['content'].touched">
       Field is Required
     </mat-error>

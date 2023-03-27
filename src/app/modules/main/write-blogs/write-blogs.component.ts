@@ -5,6 +5,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
 import { Editor,Toolbar,Validators as validators } from 'ngx-editor';
 import { PATHS } from 'src/app/common/constants';
+
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import { REGEX } from 'src/app/common/constants';
 export interface Tags {
@@ -69,10 +70,10 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
     // this.router.navigate([PATHS.MAIN.DASHBOARD])
   }
   get imageControls(){
-    return this.imageForm.controls;
+    return this.imageForm?.controls;
   }
   get controls(){
-    return this.writeForm.controls;
+    return this.writeForm?.controls;
   }
 
   ngOnInit(): void {
@@ -128,7 +129,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 imageFormSubmit(){
     const data = new FormData();
     data.append('file',this.image);
-    data.append('type',this.imageForm.value.type);
+    data.append('type',this.imageForm?.value.type);
     this.WriteBlogService.postImage(data).subscribe((res:any)=>{
       console.log(res.data);
       this.file=res;

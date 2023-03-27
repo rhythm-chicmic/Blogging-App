@@ -61,7 +61,10 @@ export const PATHS = {
       RESET_PASSWORD: "/api/v1/password/resetPassword"
     },
     WRITE_BLOG:{
-      BLOG_POST: "/api/blog"
+      BLOG_POST: "/api/blog",
+      BLOG_GET: "/api/blog",
+      BLOG_PUT: "/api/blog",
+      BLOG_DELETE: "/api/blog"
     },
     FILE:{
       FILE_POST:"/api/file/image"

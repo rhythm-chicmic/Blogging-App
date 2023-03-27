@@ -20,5 +20,8 @@ export class WriteBlogService {
   postImage(data:FormData){
     return this.httpService.post(this.path+APIS.FILE.FILE_POST,data);
   }
-
+  getBlog(){
+    console.log("Hellow")
+    return this.httpService.get(this.path+APIS.WRITE_BLOG.BLOG_GET)
+  }
 }

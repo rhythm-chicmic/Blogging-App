@@ -15,7 +15,7 @@
         </mat-error>
       </mat-form-field >
       <button mat-raised-button color="primary" [disabled]="LoginForm.invalid">Login</button>
-      <mat-error *ngIf="submitted===true">
+      <mat-error *ngIf="submitted">
         Enter Valid Information
       </mat-error>
     </form>
