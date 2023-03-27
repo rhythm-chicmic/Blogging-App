@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { WriteBlogsComponent } from './write-blogs/write-blogs.component';
 import { NgxEditorModule,schema } from 'ngx-editor';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 import { RouterModule, Routes } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
+import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { TagInputModule } from 'ngx-chips';
+import {MatChipsModule} from '@angular/material/chips';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 
@@ -20,8 +24,12 @@ const routes:Routes=[
   ],
   imports: [
     MatButtonModule,
+    MatChipsModule,
+    TagInputModule,
+    MatInputModule,
     CommonModule,
     ReactiveFormsModule,
+    MatIconModule,
     NgxEditorModule.forRoot({
       locals: {
         // menu

@@ -27,6 +27,9 @@ export const PATHS = {
     SHARED:{
       NAVBAR: 'navbar',
       RE_DIRECT:'redirect'
+    },
+    USER_PROFILE: {
+      USER_PAGE:'user-page'
     }
   }
 
@@ -35,7 +38,8 @@ export const PATHS = {
     AUTH: 'auth',
     MAIN: 'main',
     SHARED:'shared',
-    WILDCARD: '**'
+    WILDCARD: '**',
+    USER_PROFILE:'user-profile'
   }
   export const PATH_MATCH = {
     FULL: 'full',
@@ -55,6 +59,12 @@ export const PATHS = {
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
       CHANGE_PASSWORD: "/api/v1/password/changePassword",
       RESET_PASSWORD: "/api/v1/password/resetPassword"
+    },
+    WRITE_BLOG:{
+      BLOG_POST: "/api/blog"
+    },
+    FILE:{
+      FILE_POST:"/api/file/profileimage"
     }
   }
   export const STORAGE_KEYS={

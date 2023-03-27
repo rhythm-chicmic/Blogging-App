@@ -1,18 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup ,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Editor,Toolbar,Validators } from 'ngx-editor';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
+import { Editor,Toolbar,Validators as validators } from 'ngx-editor';
 import { PATHS } from 'src/app/common/constants';
+import { WriteBlogService } from 'src/app/core/services/write-blog.service';
+import { REGEX } from 'src/app/common/constants';
+export interface Tags {
+  tagName: string;
+}
 @Component({
   selector: 'app-write-blogs',
   templateUrl: './write-blogs.component.html',
   styleUrls: ['./write-blogs.component.scss']
 })
+
 export class WriteBlogsComponent implements OnInit, OnDestroy{
   editor!: Editor;
   writeForm!:FormGroup
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
   html!: '';
-  constructor(private fb:FormBuilder,private router:Router){
+  tags: Tags[] = [];
+
+  constructor(private fb:FormBuilder,private router:Router,private WriteBlogService:WriteBlogService){
     this.initWriteForm();
   }
   toolbar: Toolbar = [
@@ -27,18 +39,62 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   ];
   initWriteForm(){
     this.writeForm =this.fb.group({
-      editorContent: new FormControl('', Validators.required()),
+      content: new FormControl('',validators.required()),
+      title: new FormControl('',[Validators.required,Validators.pattern(REGEX.NAME)]),
+      tags: new FormArray([], Validators.max(4))
     });
   }
 
+
   OnSubmit(){
+    this.writeForm.value.tags.push(...this.tags);
     console.log(this.writeForm.value);
-    this.router.navigate([PATHS.MAIN.DASHBOARD])
-    
+    this.WriteBlogService.postBlog(this.writeForm.value).subscribe(res=>console.log(res));
+    // this.router.navigate([PATHS.MAIN.DASHBOARD])
+  }
+  get controls(){
+    return this.writeForm.controls;
   }
 
   ngOnInit(): void {
     this.editor = new Editor();
+  }
+
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+  
+    if (value) {
+      this.tags.push({tagName: value});
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(tag: Tags): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
+  edit(tag: Tags, event: MatChipEditedEvent) {
+    const value = event.value.trim();
+
+    // Remove tag if it no longer has a name
+    if (!value) {
+      this.remove(tag);
+      return;
+    }
+
+    // Edit existing tag
+    const index = this.tags.indexOf(tag);
+    if (index >= 0) {
+      this.tags[index].tagName = value;
+    }
   }
 
   // make sure to destory the editor

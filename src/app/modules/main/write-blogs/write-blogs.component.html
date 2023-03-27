@@ -1,7 +1,46 @@
+
+
 <form [formGroup]="writeForm" (ngSubmit)="OnSubmit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Type Here.."  formControlName="title">
+    <mat-error *ngIf="controls['title'].errors?.['required'] && controls['title'].touched">
+      Field is Required
+    </mat-error>
+    <mat-error *ngIf="controls['title'].errors?.['pattern']">
+      Field is Required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Enter Tags</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter Tags">
+      <mat-chip-row *ngFor="let tag of tags"
+                    (removed)="remove(tag)"
+                    [editable]="true"
+                    (edited)="edit(tag, $event)"
+                    [aria-description]="'press enter to edit ' + tag.tagName">
+        {{tag.tagName}}
+        <button matChipRemove [attr.aria-label]="'remove ' + tag.tagName">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      <input placeholder="New Tags..." 
+             [matChipInputFor]="chipGrid" formArrayName="tags"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)"/> 
+             <mat-error *ngIf="tags.length>4">
+              Limit Reached 
+             </mat-error>
+    </mat-chip-grid>
+  </mat-form-field>
   <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-    <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
+    <ngx-editor [editor]="editor" formControlName="content"> </ngx-editor>
+    <mat-error *ngIf="controls['content'].errors?.['required'] && controls['content'].touched">
+      Field is Required
+    </mat-error>
   </div>
   <button mat-raised-button color="accent" [disabled]="writeForm.invalid">Submit</button>
 

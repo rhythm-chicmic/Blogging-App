@@ -4,6 +4,7 @@ import { PATHS, REGEX } from 'src/app/common/constants';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { STORAGE_KEYS } from 'src/app/common/constants';
 import { SocialUser } from '@abacritt/angularx-social-login';
 @Component({
   selector: 'app-login',
@@ -36,8 +37,10 @@ export class LoginComponent implements OnInit{
       this.user = user;
       this.loggedIn = (user != null);
       const token = this.user.idToken
-      this.service.googleLogin({token}).subscribe((res)=>{
+      this.service.googleLogin({token}).subscribe((res:any)=>{
         console.log(res)
+      localStorage.setItem(STORAGE_KEYS.TOKEN,res.data.token);
+
         this.router.navigate([PATHS.MAIN.DASHBOARD])
       });
       

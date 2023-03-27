@@ -32,3 +32,8 @@ export interface googleLoginModel {
 export interface resetPasswordModel{
     newPassword:string
 }
+export interface WriteBlogModal{
+    title:string,
+    content:string,
+    tags:string
+}
