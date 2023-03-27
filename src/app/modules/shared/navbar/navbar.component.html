@@ -11,6 +11,10 @@
      <a mat-button (click)="write()"><mat-icon> border_color</mat-icon>Write</a>
      <a mat-button (click)="signUp()">Sign up</a>
      <a mat-button (click)="signIn()">Sign In</a>
-     <a mat-button ><mat-icon class="account_circle">account_circle</mat-icon></a>
+     <button mat-button [matMenuTriggerFor]="menu"><mat-icon class="account_circle">account_circle</mat-icon></button>
+     <mat-menu #menu="matMenu">
+      <button mat-menu-item>View Profile</button>
+      <button mat-menu-item>Sign Out</button>
+    </mat-menu>
 
    </mat-toolbar>

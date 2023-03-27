@@ -11,6 +11,7 @@ import {MatCardModule} from '@angular/material/card';;
 import { RouterModule, Routes } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
 import {StyleClassModule} from 'primeng/styleclass';
+import {MatMenuModule} from '@angular/material/menu';
 import { ButtonModule } from 'primeng/button';
 import {MatChipsModule} from '@angular/material/chips';
 import { CardModule } from 'primeng/card';
@@ -35,6 +36,7 @@ const routes:Routes=[
     MatProgressSpinnerModule,
     MatCardModule,
     ButtonModule,
+    MatMenuModule,
     MatToolbarModule,
     CardModule,
     MatButtonModule,
