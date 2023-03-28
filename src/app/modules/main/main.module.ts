@@ -13,14 +13,17 @@ import {MatChipsModule} from '@angular/material/chips';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuardGuard } from 'src/app/core/guards/auth-guard.guard';
+import { BlogDisplayPageComponent } from './blog-display-page/blog-display-page.component';
 const routes:Routes=[
   {path:PATHS.MAIN.BLOG_WRITE,canActivate:[AuthGuardGuard],component:WriteBlogsComponent},
-  {path:PATHS.MAIN.DASHBOARD,component:DashboardComponent}
+  {path:PATHS.MAIN.DASHBOARD,component:DashboardComponent},
+  {path:PATHS.MAIN.BLOG_DISPLAY,component:BlogDisplayPageComponent}
 ]
 @NgModule({
   declarations: [
     WriteBlogsComponent,
-    DashboardComponent
+    DashboardComponent,
+    BlogDisplayPageComponent
   ],
   imports: [
     MatButtonModule,
@@ -69,6 +72,6 @@ const routes:Routes=[
     RouterModule.forChild(routes),
     SharedModule
   ],
-  exports:[WriteBlogsComponent,DashboardComponent]
+  exports:[WriteBlogsComponent,DashboardComponent,BlogDisplayPageComponent]
 })
 export class MainModule { }

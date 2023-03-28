@@ -22,7 +22,8 @@ export const PATHS = {
     MAIN: {
         DASHBOARD: 'home',
         PROFILE: 'profile',
-        BLOG_WRITE:'write-blog'
+        BLOG_WRITE:'write-blog',
+        BLOG_DISPLAY:'blog'
     },
     SHARED:{
       NAVBAR: 'navbar',
