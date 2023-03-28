@@ -28,6 +28,7 @@ const routes:Routes=[
   ],
   imports: [
     MatTableModule,
+    
     MatPaginatorModule,
     ReactiveFormsModule,
     FormsModule,
