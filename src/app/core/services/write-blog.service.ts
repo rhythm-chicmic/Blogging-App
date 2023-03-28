@@ -25,6 +25,6 @@ export class WriteBlogService {
     return this.httpService.get(this.path+APIS.WRITE_BLOG.BLOG_GET)
   }
   getUserBlogs(){
-    return this.httpService.delete(this.path+ APIS.WRITE_BLOG.MY_BLOG_GET)
+    return this.httpService.get(this.path+ APIS.WRITE_BLOG.MY_BLOG_GET)
   }
 }
