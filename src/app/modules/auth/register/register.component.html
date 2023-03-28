@@ -74,7 +74,7 @@
 
       </mat-card-content>
       <button mat-stroked-button color="primary" [disabled]="RegisterForm.invalid" class="btn-block">Register</button>
-      <mat-error *ngIf="submitted===true">
+      <mat-error *ngIf="submitted">
         Enter Valid Information
       </mat-error>
     </form>

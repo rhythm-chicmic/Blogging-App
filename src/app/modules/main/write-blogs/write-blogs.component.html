@@ -2,7 +2,7 @@
   <mat-form-field class="example-full-width">
     <mat-label>Title</mat-label>
     <input matInput placeholder="Type Here.."  formControlName="title">
-    <mat-error *ngIf="controls['title'].errors?.['required'] && controls['title'].touched">
+    <mat-error *ngIf="controls['title'].errors?.['required'] && controls['title']?.touched">
       Field is Required
     </mat-error>
     <mat-error *ngIf="controls['title'].errors?.['pattern']">
@@ -27,7 +27,7 @@
              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
              [matChipInputAddOnBlur]="addOnBlur"
              (matChipInputTokenEnd)="add($event)"/> 
-             <mat-error *ngIf="controls['tags'].errors?.['required'] && controls['tags'].touched">
+             <mat-error *ngIf="controls['tags'].errors?.['required'] && controls['tags']?.touched">
               Field is Required
              </mat-error>
     </mat-chip-grid>
@@ -40,7 +40,7 @@
     <mat-label >
       I{{file ? file.data  : ' Select a Image from here' }}
     </mat-label>
-  
+     
   </form>
   </div>
   <br>
