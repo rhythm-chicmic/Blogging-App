@@ -1,26 +1,22 @@
 .example-card{
   //reduce the card size
   background-color:  rgb(255, 255, 255);
-  display: table-row;
-  max-width: 300px;
+  // display: table-row;
+
 
 }
 .example-card:hover {
   background-color:rgb(233, 217, 248);
 }
 
-.card-container{
-  width: 80%;
-}
+
 .icon{
   float: right;
 }
 .div-nest{
   margin-top: 27px;
 }
-#tag{
-  margin-left: 600px;
-}
+
 .image-hover:hover{
   transform:scale(1.01);
   border-radius:20px ;
@@ -48,4 +44,59 @@
 .circular-img:hover{
   transform:scale(1.01);
   box-shadow: 0 0 20px grey;
+}
+.content_display{
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: normal;
+-webkit-line-clamp: 2;
+}
+
+.flex {
+  display: flex;
+}
+
+.div1,
+.div2,
+.div3 {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.div3 {
+  justify-content: flex-end;
+}
+.tag:hover {
+  background-color: rgba(0, 0, 0, 0.041);
+  cursor: pointer;
+}
+.tag {
+  height: fit-content;
+  margin-left: 2vw;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5vw;
+}
+.div1{
+  margin: auto;
+}
+.div1 .img-div{
+  margin-top: 1vw;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 3.7vw;
+  height:3.7vw;
+}
+.div1 .img-div:hover{
+  cursor: pointer;
+  transform:scale(1.01);
+  box-shadow: 0 0 20px grey;
+}
+.div1 h1{
+  margin-top: 2vw;
+  text-decoration: solid;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
 }

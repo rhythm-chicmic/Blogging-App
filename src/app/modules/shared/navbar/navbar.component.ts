@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
+import { STORAGE_KEYS } from 'src/app/common/constants';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,10 +14,16 @@ export class NavbarComponent {
     this.route.navigate([PATHS.AUTH.LOGIN]);
   }
   signUp(){
+    
     this.route.navigate([PATHS.AUTH.REGISTER]);
   }
   write(){
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
     this.route.navigate([PATHS.MAIN.BLOG_WRITE]);
+    }
+    else{
+      this.route.navigate([PATHS.AUTH.LOGIN])
+    }
   }
   bloggerClick(){
     this.route.navigate([PATHS.MAIN.DASHBOARD])

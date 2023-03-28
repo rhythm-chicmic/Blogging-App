@@ -53,7 +53,9 @@ export const PATHS = {
       LOGOUT: "/api/vi/auth/logout"
     },
     USER:{
-      REGISTER:"/api/v1/user/registration"
+      REGISTER:"/api/v1/user/registration",
+      USER_GET: "/api/v1/user/myProfile",
+      GUEST_GET: "/api/v1/user"
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
@@ -64,7 +66,8 @@ export const PATHS = {
       BLOG_POST: "/api/blog",
       BLOG_GET: "/api/blog",
       BLOG_PUT: "/api/blog",
-      BLOG_DELETE: "/api/blog"
+      BLOG_DELETE: "/api/blog",
+      MY_BLOG_GET:"/api/blog/myBlogs"
     },
     FILE:{
       FILE_POST:"/api/file/image"
