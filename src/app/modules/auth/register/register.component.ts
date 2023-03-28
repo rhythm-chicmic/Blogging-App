@@ -35,7 +35,6 @@ Register(){
   if((this.RegisterForm as FormGroup).valid){
     console.log(this.RegisterForm.value.dateOfBirth);
     this.authService.signUp(this.RegisterForm.value).subscribe((res:any)=>{
-      console.log(res.data.token, "hello wporld")
       localStorage.setItem(STORAGE_KEYS.TOKEN,res.data.token);
     })
     this.formDirective.resetForm();

@@ -29,7 +29,8 @@ export const PATHS = {
       RE_DIRECT:'redirect'
     },
     USER_PROFILE: {
-      USER_PAGE:'user-page'
+      USER_PAGE:'my-page',
+      GENERAL_PAGE:'user'
     }
   }
 
@@ -55,7 +56,7 @@ export const PATHS = {
     USER:{
       REGISTER:"/api/v1/user/registration",
       USER_GET: "/api/v1/user/myProfile",
-      GUEST_GET: "/api/v1/user"
+      GUEST_GET: "/api/v1/user?id="
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",

@@ -26,7 +26,8 @@ export class AuthenticateService {
     return this.httpService.put(this.path+APIS.PASSWORD.RESET_PASSWORD,data);
   }
   logOut(){
-    return this.httpService.get(this.path+APIS.AUTH.LOGOUT);
+    return this.httpService.delete(this.path+APIS.AUTH.LOGOUT);
+ 
   }
 
 }

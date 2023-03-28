@@ -14,21 +14,24 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { GenralProfileComponent } from './genral-profile/genral-profile.component'
 
 const routes:Routes=[
-  {path:PATHS.USER_PROFILE.USER_PAGE,component:UserPageComponent}
+  {path:PATHS.USER_PROFILE.USER_PAGE,component:UserPageComponent},
+  {path:PATHS.USER_PROFILE.GENERAL_PAGE+'/:id',component:GenralProfileComponent},
+  
 ]
 
 @NgModule({
   declarations: [
     UserPageComponent,
     UserDetailsComponent,
-    UserBlogsComponent
+    UserBlogsComponent,
+    GenralProfileComponent
   ],
   imports: [
     MatTableModule,
-    
     MatPaginatorModule,
     ReactiveFormsModule,
     FormsModule,
@@ -41,6 +44,7 @@ const routes:Routes=[
     MatTabsModule,
     RouterModule.forChild(routes),
     SharedModule
-  ]
+  ],
+  exports:[UserPageComponent,GenralProfileComponent]
 })
 export class UserProfileModule { }

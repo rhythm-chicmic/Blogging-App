@@ -12,9 +12,9 @@ import { TagInputModule } from 'ngx-chips';
 import {MatChipsModule} from '@angular/material/chips';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { AuthGuardGuard } from 'src/app/core/guards/auth-guard.guard';
 const routes:Routes=[
-  {path:PATHS.MAIN.BLOG_WRITE,component:WriteBlogsComponent},
+  {path:PATHS.MAIN.BLOG_WRITE,canActivate:[AuthGuardGuard],component:WriteBlogsComponent},
   {path:PATHS.MAIN.DASHBOARD,component:DashboardComponent}
 ]
 @NgModule({

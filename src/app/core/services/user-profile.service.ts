@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { APIS } from 'src/app/common/constants';
 import { environment } from 'src/environments/environment';
 
@@ -13,5 +13,7 @@ export class UserProfileService {
   getUserProfile(){
     return this.httpService.get(this.path+APIS.USER.USER_GET);
   }
-
+  getGeneralProfile(id:string){
+    return this.httpService.get(this.path+APIS.USER.GUEST_GET+id);
+  }
 }

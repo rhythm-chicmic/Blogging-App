@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
-import { STORAGE_KEYS } from 'src/app/common/constants';
+import { UserProfileService } from 'src/app/core/services/user-profile.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private route:Router, private AuthService:AuthenticateService){}
+  id:string='';
+  constructor(private route:Router, private AuthService:AuthenticateService,private userService:UserProfileService){}
+ 
+
+  
   signIn(){
     this.route.navigate([PATHS.AUTH.LOGIN]);
   }
@@ -18,12 +22,8 @@ export class NavbarComponent {
     this.route.navigate([PATHS.AUTH.REGISTER]);
   }
   write(){
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
     this.route.navigate([PATHS.MAIN.BLOG_WRITE]);
-    }
-    else{
-      this.route.navigate([PATHS.AUTH.LOGIN])
-    }
+    
   }
   bloggerClick(){
     this.route.navigate([PATHS.MAIN.DASHBOARD])
@@ -34,6 +34,7 @@ export class NavbarComponent {
   SignOut(){
     this.AuthService.logOut().subscribe((res)=>{
       console.log(res);
+      localStorage.clear()
       this.route.navigate([PATHS.MAIN.DASHBOARD]);
     })
   }
