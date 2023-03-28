@@ -27,4 +27,7 @@ export class WriteBlogService {
   getUserBlogs(){
     return this.httpService.get(this.path+ APIS.WRITE_BLOG.MY_BLOG_GET)
   }
+  putBlog(data:FormData){
+    return this.httpService.put(this.path+APIS.WRITE_BLOG.BLOG_PUT,data)
+  }
 }

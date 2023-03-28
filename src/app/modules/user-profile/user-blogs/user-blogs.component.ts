@@ -20,7 +20,18 @@ export class UserBlogsComponent {
       console.log(res.data)
     })
   }
-  edit(){
-    this.router.navigate([PATHS.MAIN.BLOG_WRITE])
+  edit(id:string){
+    let blogData;
+     this.allBlogs.find((res:any)=>{
+      console.log(res.blog.blogId)
+      if(res.blog.blogId===id){
+        blogData= res;
+    this.router.navigateByUrl(PATHS.MAIN.BLOG_WRITE,{state:{data:blogData}})
+
+      }
+     })
+    
+
+ 
   }
 }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
 import { Editor,Toolbar,Validators as validators } from 'ngx-editor';
-import { PATHS } from 'src/app/common/constants';
+
 
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import { REGEX } from 'src/app/common/constants';
@@ -29,8 +29,18 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   tags: Tags[] = [];
 
   constructor(private fb:FormBuilder,private router:Router,private WriteBlogService:WriteBlogService){
+     if(router.getCurrentNavigation()?.extras?.state?.['data']){
+    this.initEditForm();
+     }
+     else{
     this.initWriteForm();
+     }
+   
+
+
+
     this.initImageForm();
+
   }
 
   initImageForm(){
@@ -60,15 +70,38 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   
     });
   }
+  initEditForm(){
+    this.writeForm =this.fb.group({
+      content: new FormControl(this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.content),
+      title: new FormControl(this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.title),
+      tags: new FormArray([]),
+      previewImage:new FormControl(this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.previewImage)
+  
+    });
+   
+    let tagsData =this.router.getCurrentNavigation()?.extras?.state?.['data'].tags;
+    
+    for(let tagName of tagsData){
+      this.tags.push({tagName: tagName});
+    }
+
+  }
 
 
   OnSubmit(){
+    if(this.router.getCurrentNavigation()?.extras?.state?.['data']){
+      this.writeForm.value.tags.push(...this.tags);
+      this.writeForm.value.previewImage=this.image;
+      console.log(this.writeForm.value);
+      this.WriteBlogService.putBlog(this.writeForm.value).subscribe(res=>console.log(res));
+       }
+       else{
     this.writeForm.value.tags.push(...this.tags);
     this.writeForm.value.previewImage=this.image;
     console.log(this.writeForm.value);
     this.WriteBlogService.postBlog(this.writeForm.value).subscribe(res=>console.log(res));
     // this.router.navigate([PATHS.MAIN.DASHBOARD])
-  }
+  }}
   get imageControls(){
     return this.imageForm?.controls;
   }
