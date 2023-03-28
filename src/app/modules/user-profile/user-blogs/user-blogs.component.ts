@@ -31,7 +31,12 @@ export class UserBlogsComponent {
       }
      })
     
-
- 
+  }
+  delete(id:string){
+    this.blogService.deleteBlog(id).subscribe();
+    this.blogService.getUserBlogs().subscribe((res:any)=>{
+      this.allBlogs=res.data;
+      console.log(res.data)
+    })
   }
 }

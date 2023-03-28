@@ -30,4 +30,7 @@ export class WriteBlogService {
   putBlog(data:FormData){
     return this.httpService.put(this.path+APIS.WRITE_BLOG.BLOG_PUT,data)
   }
+  deleteBlog(id:string){
+    return this.httpService.delete(this.path+APIS.WRITE_BLOG.BLOG_DELETE+id)
+  }
 }

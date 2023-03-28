@@ -67,7 +67,7 @@ export const PATHS = {
       BLOG_POST: "/api/blog",
       BLOG_GET: "/api/blog",
       BLOG_PUT: "/api/blog",
-      BLOG_DELETE: "/api/blog",
+      BLOG_DELETE: "/api/blog/?id=",
       MY_BLOG_GET:"/api/blog/myBlogs"
     },
     FILE:{
