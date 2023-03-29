@@ -67,7 +67,9 @@ export const PATHS = {
     WRITE_BLOG:{
       BLOG_POST: "/api/blog",
       BLOG_GET: "/api/blog",
-      BLOG_PUT: "/api/blog",
+      BLOG_GET_BY_ID:"/api/blog/?id=",
+      BLOG_GET_BY_TAG:"/api/blog/?searchString=",
+      BLOG_PUT: "/api/blog?id=",
       BLOG_DELETE: "/api/blog/?id=",
       MY_BLOG_GET:"/api/blog/myBlogs"
     },

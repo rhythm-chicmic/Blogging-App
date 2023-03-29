@@ -7,7 +7,7 @@ import { Editor,Toolbar,Validators as validators } from 'ngx-editor';
 
 
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
-import { REGEX } from 'src/app/common/constants';
+import { PATHS, REGEX } from 'src/app/common/constants';
 export interface Tags {
   tagName: string;
 }
@@ -20,6 +20,7 @@ export interface Tags {
 export class WriteBlogsComponent implements OnInit, OnDestroy{
   editor!: Editor;
   file:any;
+  blogId:string='';
   writeForm!:FormGroup
   image:any;
   imageForm!:FormGroup
@@ -29,7 +30,9 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   tags: Tags[] = [];
 
   constructor(private fb:FormBuilder,private router:Router,private WriteBlogService:WriteBlogService){
-     if(router.getCurrentNavigation()?.extras?.state?.['data']){
+    if(router.getCurrentNavigation()?.extras?.state?.['data']){
+     this.blogId=this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.blogId;
+
     this.initEditForm();
      }
      else{
@@ -89,18 +92,20 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
 
   OnSubmit(){
-    if(this.router.getCurrentNavigation()?.extras?.state?.['data']){
+    if(this.router.getCurrentNavigation()?.extras?.state?.['data']!==null){
       this.writeForm.value.tags.push(...this.tags);
-      this.writeForm.value.previewImage=this.image;
-      console.log(this.writeForm.value);
-      this.WriteBlogService.putBlog(this.writeForm.value).subscribe(res=>console.log(res));
+      if(this.image){
+    this.writeForm.value.previewImage=this.image
+      }
+      console.log(this.writeForm.value, "hello");
+      this.WriteBlogService.putBlog(this.writeForm.value,this.blogId).subscribe(res=>console.log(res));
        }
        else{
     this.writeForm.value.tags.push(...this.tags);
     this.writeForm.value.previewImage=this.image;
     console.log(this.writeForm.value);
     this.WriteBlogService.postBlog(this.writeForm.value).subscribe(res=>console.log(res));
-    // this.router.navigate([PATHS.MAIN.DASHBOARD])
+    this.router.navigate([PATHS.MAIN.DASHBOARD])
   }}
   get imageControls(){
     return this.imageForm?.controls;

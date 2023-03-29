@@ -16,6 +16,8 @@ export class DashboardScrollBlogsComponent {
   constructor(private blogService:WriteBlogService,private router:Router,private userProfileService:UserProfileService){
     this.blogService.getBlog().subscribe((res:any)=>{
       console.log(res.data)
+      console.log(res)
+
       this.blogPost = res?.data
     })
   }
