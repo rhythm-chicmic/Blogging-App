@@ -36,4 +36,7 @@ export class WriteBlogService {
   deleteBlog(id:string){
     return this.httpService.delete(this.path+APIS.WRITE_BLOG.BLOG_DELETE+id)
   }
+  getFamousTags(){
+    return this.httpService.get(this.path+APIS.WRITE_BLOG.FAMOUS_TAGS);
+  }
 }

@@ -10,7 +10,9 @@ import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 export class BlogDisplayPageComponent implements OnInit{
   env = environment.BASE_URL+'/'
  blogDetails:any;
+ famousTags:string[]=[]
   id:string=''
+  demo_img:string="https://material.angular.io/assets/img/examples/shiba2.jpg"
   constructor(private blogService:WriteBlogService, private activeRoute:ActivatedRoute){}
 
   ngOnInit(): void {
@@ -20,6 +22,11 @@ export class BlogDisplayPageComponent implements OnInit{
     this.blogService.getBlogById(this.id).subscribe((res:any)=>{
       this.blogDetails=res.data;
     })
+     this.blogService.getFamousTags().subscribe((res:any)=>{
+      console.log(res.data);
+      this.famousTags=res.data
+      
+     }) 
   }
 }
 
