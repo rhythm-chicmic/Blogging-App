@@ -72,7 +72,8 @@ export const PATHS = {
       BLOG_PUT: "/api/blog?id=",
       BLOG_DELETE: "/api/blog/?id=",
       MY_BLOG_GET:"/api/blog/myBlogs",
-      FAMOUS_TAGS:"/api/blog/famousTags"
+      FAMOUS_TAGS:"/api/blog/famousTags",
+      RECOMMENDATIONS_BLOG:"/api/blog/randomBlogs"
     },
     FILE:{
       FILE_POST:"/api/file/image"

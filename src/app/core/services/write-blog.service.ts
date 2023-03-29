@@ -39,4 +39,7 @@ export class WriteBlogService {
   getFamousTags(){
     return this.httpService.get(this.path+APIS.WRITE_BLOG.FAMOUS_TAGS);
   }
+  getRecommendedBlogs(){
+    return this.httpService.get(this.path+APIS.WRITE_BLOG.RECOMMENDATIONS_BLOG);
+  }
 }

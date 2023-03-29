@@ -11,6 +11,7 @@ export class BlogDisplayPageComponent implements OnInit{
   env = environment.BASE_URL+'/'
  blogDetails:any;
  famousTags:string[]=[]
+ recommendedBlogs:any=[]
   id:string=''
   demo_img:string="https://material.angular.io/assets/img/examples/shiba2.jpg"
   constructor(private blogService:WriteBlogService, private activeRoute:ActivatedRoute){}
@@ -23,10 +24,12 @@ export class BlogDisplayPageComponent implements OnInit{
       this.blogDetails=res.data;
     })
      this.blogService.getFamousTags().subscribe((res:any)=>{
-      console.log(res.data);
       this.famousTags=res.data
-      
      }) 
+     this.blogService.getRecommendedBlogs().subscribe((res:any)=>{
+      console.log(res.data);
+      this.recommendedBlogs=res.data;
+     })
   }
 }
 

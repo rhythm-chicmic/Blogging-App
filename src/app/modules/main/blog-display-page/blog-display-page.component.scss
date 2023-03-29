@@ -1,3 +1,19 @@
 .page-title #title{
     font-size: -webkit-xxx-large;
 }
+.fh5co_most_trading{
+    height: 80px;
+    width: 80px;
+    transition:transform 0.25s ease;
+    cursor: pointer;
+}
+
+   
+
+.fh5co_most_trading:hover{
+    transform:scale(1.01);
+  box-shadow: 0 0 20px grey;
+}
+.titlePage{
+    cursor: pointer;
+}
