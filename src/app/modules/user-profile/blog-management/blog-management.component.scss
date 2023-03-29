@@ -1,25 +1,13 @@
-.example-detail-row {
-    height: 0;
-  }
-  .example-element-row td {
-    border-bottom-width: 0;
-  }
-  
-  .example-element-detail {
-    overflow: hidden;
-    display: flex;
-    width: 100%;
-  }
-  
-  .detail-table {
-    background: #eebfda73;
-    justify-content: center;
-    width: 100%;
-  }
-  .td-tag{
-    width: 100%;
-  }
-  
 
-  //
-  
+.wrapper {
+  height: 50vh;
+}
+
+.table-container {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  padding-right: 10px;
+  box-sizing: border-box;
+
+}
