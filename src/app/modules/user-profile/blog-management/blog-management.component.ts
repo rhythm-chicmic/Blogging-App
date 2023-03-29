@@ -33,7 +33,9 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
 
 
 
-  toggleRow() {
+  toggleRow(id:any) {
+    
+
     this.toggleValue=!this.toggleValue
   }
 

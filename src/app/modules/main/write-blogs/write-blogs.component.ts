@@ -92,7 +92,8 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
 
   OnSubmit(){
-    if(this.router.getCurrentNavigation()?.extras?.state?.['data']!==null){
+    if(this.router.getCurrentNavigation()?.extras?.state?.['data']){
+      
       this.writeForm.value.tags.push(...this.tags);
       if(this.image){
     this.writeForm.value.previewImage=this.image
