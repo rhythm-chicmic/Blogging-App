@@ -21,8 +21,10 @@ export class WriteBlogService {
     return this.httpService.post(this.path+APIS.FILE.FILE_POST,data);
   }
   getBlog(){
-    
     return this.httpService.get(this.path+APIS.WRITE_BLOG.BLOG_GET)
+  }
+  getBlogById(id:string){
+    return this.httpService.get(this.path+APIS.WRITE_BLOG.BLOG_GET_BY_ID+id);
   }
   getUserBlogs(){
     return this.httpService.get(this.path+ APIS.WRITE_BLOG.MY_BLOG_GET)

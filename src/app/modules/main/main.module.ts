@@ -17,7 +17,7 @@ import { BlogDisplayPageComponent } from './blog-display-page/blog-display-page.
 const routes:Routes=[
   {path:PATHS.MAIN.BLOG_WRITE,canActivate:[AuthGuardGuard],component:WriteBlogsComponent},
   {path:PATHS.MAIN.DASHBOARD,component:DashboardComponent},
-  {path:PATHS.MAIN.BLOG_DISPLAY,component:BlogDisplayPageComponent}
+  {path:PATHS.MAIN.BLOG_DISPLAY+'/:id',component:BlogDisplayPageComponent}
 ]
 @NgModule({
   declarations: [

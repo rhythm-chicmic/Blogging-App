@@ -43,6 +43,9 @@ export class DashboardScrollBlogsComponent {
       this.router.navigate([PATHS.AUTH.LOGIN]);
     }
   }
+  viewBlog(id:string){
+    this.router.navigate([PATHS.MAIN.BLOG_DISPLAY+`/${id}`]);
+  }
 
 
 }

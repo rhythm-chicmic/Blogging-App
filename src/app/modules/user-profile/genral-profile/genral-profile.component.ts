@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
-import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,11 +11,11 @@ import { environment } from 'src/environments/environment';
 export class GenralProfileComponent implements OnInit{
   userDetails:any;
   id:string=''
-  constructor(private userProfileService:UserProfileService,private route:ActivatedRoute){}
+  constructor(private userProfileService:UserProfileService,private activeRoute:ActivatedRoute){}
   env = environment.BASE_URL+'/'
   demo_img="https://material.angular.io/assets/img/examples/shiba2.jpg"
   ngOnInit(){
-    this.route.params.subscribe(params=>{
+    this.activeRoute.params.subscribe(params=>{
       this.id = params['id'];
       console.log(this.id);
   })
