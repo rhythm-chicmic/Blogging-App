@@ -15,7 +15,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -23,13 +22,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
 import { HttpRequestInterceptor } from 'src/app/core/interceptors/http-request.interceptor';
+import { IsLoginGuard } from 'src/app/core/guards/is-login.guard';
 
 const routes:Routes=[
   { path: PARENT_PATHS.DEFAULT, redirectTo: PATHS.AUTH.LOGIN, pathMatch:'full' },
-  { path: PATHS.AUTH.LOGIN, component: LoginComponent },
-  { path: PATHS.AUTH.REGISTER, component: RegisterComponent },
-  { path: PATHS.AUTH.FORGOT_PASSWORD, component: ForgotPasswordComponent },
-  {path:PATHS.AUTH.RESET_PASSWORD,component:ResetPasswordComponent}
+  { path: PATHS.AUTH.LOGIN, canActivate:[IsLoginGuard], component: LoginComponent },
+  { path: PATHS.AUTH.REGISTER, canActivate:[IsLoginGuard],component: RegisterComponent },
+  { path: PATHS.AUTH.FORGOT_PASSWORD,canActivate:[IsLoginGuard], component: ForgotPasswordComponent },
+  {path:PATHS.AUTH.RESET_PASSWORD,canActivate:[IsLoginGuard] ,component:ResetPasswordComponent}
 ]
 
 @NgModule({

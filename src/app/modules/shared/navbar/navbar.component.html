@@ -1,3 +1,4 @@
+<ng-container *ngIf="isLogged===false">
 <mat-toolbar color="accent">
     <span id="blogger" (click)="bloggerClick()">Blogger</span>
     <form action="" class="search">
@@ -11,6 +12,21 @@
      <a mat-button (click)="write()"><mat-icon> border_color</mat-icon>Write</a>
      <a mat-button (click)="signUp()">Sign up</a>
      <a mat-button (click)="signIn()">Sign In</a>
+   </mat-toolbar>
+</ng-container>
+
+<ng-container *ngIf="isLogged===true">
+   <mat-toolbar color="accent">
+    <span id="blogger" (click)="bloggerClick()">Blogger</span>
+    <form action="" class="search">
+    <mat-form-field appearance="outline" >
+      <mat-icon matPrefix>search</mat-icon>
+      <input type="search" name="test" placeholder="Search" aria-label="Search" matInput>
+  </mat-form-field>
+</form>
+
+    <div class="spacer"></div>
+     <a mat-button (click)="write()"><mat-icon> border_color</mat-icon>Write</a>
      <button mat-button [matMenuTriggerFor]="menu"><mat-icon class="account_circle">account_circle</mat-icon></button>
      <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="ViewProfile()">View Profile</button>
@@ -18,3 +34,10 @@
     </mat-menu>
 
    </mat-toolbar>
+
+  </ng-container>
+
+
+
+
+   

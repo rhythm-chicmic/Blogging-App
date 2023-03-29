@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PATHS } from 'src/app/common/constants';
+import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
 @Component({
@@ -10,8 +10,14 @@ import { UserProfileService } from 'src/app/core/services/user-profile.service';
 })
 export class NavbarComponent {
   id:string='';
-  constructor(private route:Router, private AuthService:AuthenticateService,private userService:UserProfileService){}
- 
+  isLogged:boolean=false;
+  constructor(private route:Router, private AuthService:AuthenticateService,private userService:UserProfileService){
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
+      this.isLogged=true;
+    }
+
+  }
+  
 
   
   signIn(){
