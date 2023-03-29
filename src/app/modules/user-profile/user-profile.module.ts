@@ -15,11 +15,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
-import { GenralProfileComponent } from './genral-profile/genral-profile.component'
+import { GenralProfileComponent } from './genral-profile/genral-profile.component';
+import { BlogManagementComponent } from './blog-management/blog-management.component'
 
 const routes:Routes=[
   {path:PATHS.USER_PROFILE.USER_PAGE,component:UserPageComponent},
   {path:PATHS.USER_PROFILE.GENERAL_PAGE+'/:id',component:GenralProfileComponent},
+  {path:PATHS.USER_PROFILE.BLOG_MANAGEMENT,component:BlogManagementComponent}
   
 ]
 
@@ -28,7 +30,8 @@ const routes:Routes=[
     UserPageComponent,
     UserDetailsComponent,
     UserBlogsComponent,
-    GenralProfileComponent
+    GenralProfileComponent,
+    BlogManagementComponent
   ],
   imports: [
     MatTableModule,

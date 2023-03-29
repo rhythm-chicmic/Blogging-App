@@ -31,7 +31,8 @@ export const PATHS = {
     },
     USER_PROFILE: {
       USER_PAGE:'my-page',
-      GENERAL_PAGE:'user'
+      GENERAL_PAGE:'user',
+      BLOG_MANAGEMENT:'manage-blog'
     }
   }
 
