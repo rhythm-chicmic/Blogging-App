@@ -3,23 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  expanded: boolean;
-}
 
-const ELEMENT_DATA: User[] = [
-  {
-    "id": 123,
-    "name": "Leanne Graham",
-    "email": "Sincere@april.biz",
-    "phone": "1-770-736-8031 x56442",
-    "expanded": false
-  }
-];
 @Component({
   selector: 'app-blog-management',
   templateUrl: './blog-management.component.html',
@@ -34,11 +18,9 @@ const ELEMENT_DATA: User[] = [
 })
 export class BlogManagementComponent implements OnInit {
 constructor(private userService:UserProfileService,private blogService:WriteBlogService){}
-  dataSource = ELEMENT_DATA;
   usersData:any;
   blogData:any;
-  columnsToDisplay = ['id','name', 'phone', 'email'];
-
+  toggleValue:boolean=false;
   ngOnInit(): void {
     this.userService.getAllProfiles().subscribe((res:any)=>{
       console.log(res.data)
@@ -51,13 +33,9 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
 
 
 
-  toggleRow(element: { expanded: boolean; }) {
-    element.expanded = !element.expanded
+  toggleRow() {
+    this.toggleValue=!this.toggleValue
   }
 
-  manageAllRows(flag: boolean) {
-    ELEMENT_DATA.forEach(row => {
-      row.expanded = flag;
-    })
-  }
+  
 }

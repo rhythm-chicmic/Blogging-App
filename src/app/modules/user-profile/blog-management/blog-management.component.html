@@ -1,8 +1,4 @@
 <div class="wrapper">
-    <button class="btn btn-warning"  (click)="manageAllRows(true)">Expand All</button>
-    <span>---</span>
-    <button class="btn btn-warning" (click)="manageAllRows(false)">Collpase All</button>
-  
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -13,11 +9,11 @@
                 <th>Actions</th>
             </tr>
             </thead>
-            <tbody>
-            <tr *ngFor="let data of usersData">
+            <tbody class="table1">
+            <tr *ngFor="let data of usersData" (click)="toggleRow()">
                 <td>{{data.userId}}</td>
                 <td>{{data.firstName}}</td>
-                <td>{{data.phone}}</td>
+                <td>{{data.phoneNo}}</td>
                 <td>{{data.email}}</td>
 
                 <td>
@@ -26,20 +22,22 @@
               </td>
             </tr>
             </tbody>
-      
-  
-      <ng-container matColumnDef="expandedDetail">
-        <td class="td-tag" mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-          <div class="example-element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
-            <table class="detail-table">
-              <tr>
+    </table>
+<hr>
+USER BLOGS
+<hr>
+    <table class="table table-bordered table-striped table-hover" *ngIf="toggleValue">
+        <thead>
+            <tr>
                 <th>Blog Id</th>
                 <th>Creation Date </th>
                 <th>Title</th>
                 <th>Tags</th>
                 <th>Actions</th>
               </tr>
-              <tr *ngFor="let blog of blogData">
+        </thead>
+        <tbody>
+            <tr *ngFor="let blog of blogData">
                 <td>{{blog.blog.blogId}}</td>
                 <td>{{blog.blog.createdAt}}</td>
                 <td>{{blog.blog.title}}</td>
@@ -48,17 +46,10 @@
                     <mat-icon type="button">edit</mat-icon>
                     <mat-icon type="button">delete</mat-icon>      
                 </td>
-              </tr>
-            </table>
-          </div>
-        </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
-        [class.example-expanded-row]="element.expanded" (click)="toggleRow(element)">
-      </tr>
-      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+            </tr>
+        </tbody>
+
+
     </table>
   
   </div>
