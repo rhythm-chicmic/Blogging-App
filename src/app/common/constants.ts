@@ -58,7 +58,8 @@ export const PATHS = {
     USER:{
       REGISTER:"/api/v1/user/registration",
       USER_GET: "/api/v1/user/myProfile",
-      GUEST_GET: "/api/v1/user?id="
+      GUEST_GET: "/api/v1/user?id=",
+      ALL_USERS:"/api/v1/user"
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",

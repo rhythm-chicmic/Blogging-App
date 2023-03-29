@@ -1,15 +1,33 @@
-   <div class="wrapper">
+<div class="wrapper">
     <button class="btn btn-warning"  (click)="manageAllRows(true)">Expand All</button>
     <span>---</span>
     <button class="btn btn-warning" (click)="manageAllRows(false)">Collpase All</button>
   
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-      </ng-container>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of usersData">
+                <td>{{data.userId}}</td>
+                <td>{{data.firstName}}</td>
+                <td>{{data.phone}}</td>
+                <td>{{data.email}}</td>
+
+                <td>
+                  <mat-icon type="button">edit</mat-icon>
+                  <mat-icon type="button">delete</mat-icon>
+              </td>
+            </tr>
+            </tbody>
+      
   
-      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
         <td class="td-tag" mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
           <div class="example-element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
@@ -21,11 +39,11 @@
                 <th>Tags</th>
                 <th>Actions</th>
               </tr>
-              <tr>
-                <td><img src="https://picsum.photos/id/{{element.id}}/150/100" alt="thumbnail"></td>
-                <td>{{element.phone}}</td>
-                <td>{{element.website}}</td>
-                <td>{{element.company}}</td>
+              <tr *ngFor="let blog of blogData">
+                <td>{{blog.blog.blogId}}</td>
+                <td>{{blog.blog.createdAt}}</td>
+                <td>{{blog.blog.title}}</td>
+                <td>{{blog.blog.tags}}</td>
                 <td>
                     <mat-icon type="button">edit</mat-icon>
                     <mat-icon type="button">delete</mat-icon>      

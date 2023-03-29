@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { UserProfileService } from 'src/app/core/services/user-profile.service';
+import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 
 export interface User {
   id: number;
   name: string;
-  username: string;
   email: string;
-  address: string;
   phone: string;
-  website: string;
-  company: string;
   expanded: boolean;
 }
 
@@ -17,56 +15,8 @@ const ELEMENT_DATA: User[] = [
   {
     "id": 123,
     "name": "Leanne Graham",
-    "username": "Bret",
     "email": "Sincere@april.biz",
-    "address": "Kulas Light Apt. 556 Gwenborough",
     "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org",
-    "company": "Romaguera-Crona",
-    "expanded": false
-  },
-  {
-    "id": 52,
-    "name": "Ervin Howell",
-    "username": "Antonette",
-    "email": "Shanna@melissa.tv",
-    "address": "Victor Plains Suite 879 Wisokyburgh",
-    "phone": "010-692-6593 x09125",
-    "website": "anastasia.net",
-    "company": "Deckow-Crist",
-    "expanded": false
-  },
-  {
-    "id": 62,
-    "name": "Clementine Bauch",
-    "username": "Samantha",
-    "email": "Nathan@yesenia.net",
-    "address": "Douglas Extension Suite 847 McKenziehaven",
-    "phone": "1-463-123-4447",
-    "website": "ramiro.info",
-    "company": "Romaguera-Jacobson",
-    "expanded": false
-  },
-  {
-    "id": 65,
-    "name": "Patricia Lebsack",
-    "username": "Karianne",
-    "email": "Julianne.OConner@kory.org",
-    "address": "Hoeger Mall Apt. 692 South Elvis",
-    "phone": "493-170-9623 x156",
-    "website": "kale.biz",
-    "company": "Robel-Corkery",
-    "expanded": false
-  },
-  {
-    "id": 84,
-    "name": "Chelsey Dietrich",
-    "username": "Kamren",
-    "email": "Lucio_Hettinger@annie.ca",
-    "address": "Skiles Walks Suite 351 Roscoeview",
-    "phone": "(254)954-1289",
-    "website": "demarco.info",
-    "company": "Keebler LLC",
     "expanded": false
   }
 ];
@@ -82,17 +32,26 @@ const ELEMENT_DATA: User[] = [
     ]),
   ],
 })
-export class BlogManagementComponent {
-  title = 'angular-mat-table-example';
-
+export class BlogManagementComponent implements OnInit {
+constructor(private userService:UserProfileService,private blogService:WriteBlogService){}
   dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['id', 'name', 'username', 'email', 'address'];
+  usersData:any;
+  blogData:any;
+  columnsToDisplay = ['id','name', 'phone', 'email'];
+
+  ngOnInit(): void {
+    this.userService.getAllProfiles().subscribe((res:any)=>{
+      console.log(res.data)
+      this.usersData=res.data
+    })
+    this.blogService.getBlog().subscribe((res:any)=>{
+      this.blogData = res.data
+    })
+  }
+
+
 
   toggleRow(element: { expanded: boolean; }) {
-    // Uncommnet to open only single row at once
-    // ELEMENT_DATA.forEach(row => {
-    //   row.expanded = false;
-    // })
     element.expanded = !element.expanded
   }
 
@@ -100,5 +59,5 @@ export class BlogManagementComponent {
     ELEMENT_DATA.forEach(row => {
       row.expanded = flag;
     })
-  } 
+  }
 }
