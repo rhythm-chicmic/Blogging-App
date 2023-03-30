@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment.development';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { Router } from '@angular/router';
+import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
 @Component({
   selector: 'app-dashboard-scroll-blogs',
@@ -11,6 +12,7 @@ import { UserProfileService } from 'src/app/core/services/user-profile.service';
 })
 export class DashboardScrollBlogsComponent {
   blogPost:any=[]
+  private readonly searchSubject = new Subject<string | undefined>();
   env:string = environment.BASE_URL +'/'
   demo_img:string = "https://material.angular.io/assets/img/examples/shiba2.jpg"
   constructor(private blogService:WriteBlogService,private router:Router,private userProfileService:UserProfileService){
@@ -46,6 +48,16 @@ export class DashboardScrollBlogsComponent {
   viewBlog(id:string){
     this.router.navigate([PATHS.MAIN.BLOG_DISPLAY+`/${id}`]);
   }
+  Search(event:Event){
+    const searchQuery= (event.target as HTMLInputElement).value
+    this.searchSubject.next(searchQuery?.trim());
+    this.searchSubject.pipe(debounceTime(300),distinctUntilChanged(),switchMap((search:any)=>
+        this.blogService.getBlogBySearchString(search))).subscribe((res:any)=>{
+          this.blogPost=res?.data;
+        })
+
+    }
+  
 
 
 }

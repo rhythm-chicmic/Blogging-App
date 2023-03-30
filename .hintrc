@@ -23,6 +23,12 @@
           "font-size: -webkit-xxx-large"
         ]
       }
+    ],
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-aria": "off"
+      }
     ]
   }
 }

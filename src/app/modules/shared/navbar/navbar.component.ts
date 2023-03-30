@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
+import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,14 +14,13 @@ export class NavbarComponent{
   id:string='';
 
   isLogged:boolean=false;
-  constructor(private route:Router, private AuthService:AuthenticateService,private userService:UserProfileService){
+  constructor(private route:Router, private AuthService:AuthenticateService,private blogService:WriteBlogService){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.isLogged=true;
     }
 
   }
  
-  
 
   
   signIn(){

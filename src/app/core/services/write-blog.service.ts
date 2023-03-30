@@ -29,6 +29,9 @@ export class WriteBlogService {
   getBlogById(id:string){
     return this.httpService.get(this.path+APIS.WRITE_BLOG.BLOG_GET_BY_ID+id);
   }
+  getBlogBySearchString(value:string){
+    return this.httpService.get(this.path+APIS.WRITE_BLOG.BLOG_GET_BY_TAG+value);
+  }
   getUserBlogs(){
     return this.httpService.get(this.path+ APIS.WRITE_BLOG.MY_BLOG_GET)
   }

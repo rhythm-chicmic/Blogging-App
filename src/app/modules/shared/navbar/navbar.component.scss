@@ -20,9 +20,10 @@ button:hover{
 .account_circle{
     transform: scale(2);
 }
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  background-color: transparent;
-  border-radius: 5px;
+.input-group{
+  margin-bottom: 15px;
+  padding: 90px;
+  justify-content: space-evenly;
 }
 mat-form-field{
   background-color: transparent;

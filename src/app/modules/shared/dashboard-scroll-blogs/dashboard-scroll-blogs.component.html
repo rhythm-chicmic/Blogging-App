@@ -1,3 +1,9 @@
+<div class="input-group">
+  <div class="form-outline">
+    <input type="search" id="form1" class="form-control" placeholder="Search Blogs" (keyup)="Search($event)" />
+  </div>
+
+</div>
 <ng-container class="card-container" *ngFor="let blog of blogPost;let index =index" >
   <mat-card class="example-card" >
     <div class="flex">
