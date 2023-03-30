@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody class="table1">
-        <tr  (click)="toggleRow(1)">
-          <td>data.userId</td>
-          <td>data.firstName</td>
-          <td>data.phoneNo</td>
-          <td>data.email</td>
+        <tr  *ngFor="let data of usersData" (click)="toggleRow(data.userId)">
+          <td>{{data.userId}}</td>
+          <td>{{data.firstName}}</td>
+          <td>{{data.phoneNo}}</td>
+          <td>{{data.email}}</td>
           <td>
             <mat-icon type="button">edit</mat-icon>
             <mat-icon type="button">delete</mat-icon>
@@ -24,8 +24,8 @@
       </tbody>
     </table>
   </div>
-  <div class="table-container">
-    <table class="table table-bordered table-striped table-hover" *ngIf="toggleValue">
+  <div class="table-container table-responsive">
+    <table class="table table-bordered table-striped table-hover table-sm border-success" *ngIf="toggleValue">
       <thead>
         <tr>
           <th>Blog Id</th>
@@ -36,19 +36,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <!-- <td>{{blog.blog.blogId}}</td>
+        <tr *ngFor="let blog of blogData">
+          <td>{{blog.blog.blogId}}</td>
           <td>{{blog.blog.createdAt}}</td>
           <td>{{blog.blog.title}}</td>
           <td>{{blog.tags}}</td>
-          <td>
-            <mat-icon type="button">edit</mat-icon>
-            <mat-icon type="button">delete</mat-icon>
-          </td> -->
-          <td>blog.blog.blogId</td>
-          <td>blog.blog.createdAt</td>
-          <td>blog.blog.title</td>
-          <td>blog.tags</td>
           <td>
             <mat-icon type="button">edit</mat-icon>
             <mat-icon type="button">delete</mat-icon>

@@ -70,6 +70,7 @@ export const PATHS = {
       BLOG_POST: "/api/blog",
       BLOG_GET: "/api/blog",
       BLOG_GET_BY_ID:"/api/blog/?id=",
+      BLOG_GET_BY_USER_ID:"/api/blog/userBlogs?id=",
       BLOG_GET_BY_TAG:"/api/blog/?searchString=",
       BLOG_PUT: "/api/blog?id=",
       BLOG_DELETE: "/api/blog/?id=",

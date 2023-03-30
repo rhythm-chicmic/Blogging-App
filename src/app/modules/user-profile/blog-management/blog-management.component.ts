@@ -26,17 +26,21 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       console.log(res.data)
       this.usersData=res.data
     })
-    this.blogService.getBlog().subscribe((res:any)=>{
-      this.blogData = res.data
-    })
+    // this.blogService.getBlog().subscribe((res:any)=>{
+    //   this.blogData = res.data
+    // })
   }
 
 
 
   toggleRow(id:any) {
     
-
-    this.toggleValue=!this.toggleValue
+    console.log(id)
+    this.blogService.getBlogByUserId(id).subscribe((res:any)=>{
+      console.log(res)
+      this.blogData=res.data;
+    })
+    this.toggleValue=true;
   }
 
   

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
@@ -8,8 +9,9 @@ import { UserProfileService } from 'src/app/core/services/user-profile.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent{
   id:string='';
+
   isLogged:boolean=false;
   constructor(private route:Router, private AuthService:AuthenticateService,private userService:UserProfileService){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
@@ -17,6 +19,7 @@ export class NavbarComponent {
     }
 
   }
+ 
   
 
   
