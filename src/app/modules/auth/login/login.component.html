@@ -4,13 +4,13 @@
     <form [formGroup]="LoginForm" (ngSubmit)="login()">
       <mat-form-field class="example-full-width">
         <input matInput type="email" placeholder="Email" name="username" formControlName="email">
-        <mat-error *ngIf="controls['email'].errors?.['pattern'] && controls['email'].touched">
+        <mat-error *ngIf="controls['email']?.errors?.['pattern'] && controls['email'].touched">
           Please provide a valid email address
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput type="password" placeholder="Password"  name="password" formControlName="password">
-        <mat-error *ngIf="controls['password'].errors?.['pattern'] && controls['password'].touched">
+        <mat-error *ngIf="controls['password']?.errors?.['pattern'] && controls['password'].touched">
           Please provide a valid password
         </mat-error>
       </mat-form-field >
@@ -21,7 +21,7 @@
     </form>
   </mat-card-content>
   <mat-label>
-    Forget Password 
+    Forget Password
     <a class="link" (click)="forgetPassword()">Click here</a>
      </mat-label>
 </mat-card>

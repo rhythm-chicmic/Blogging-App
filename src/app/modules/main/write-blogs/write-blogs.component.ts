@@ -33,15 +33,14 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
   constructor(private fb:FormBuilder,private router:Router,private WriteBlogService:WriteBlogService){
     if(router.getCurrentNavigation()?.extras?.state?.['data']){
-     this.blogId=this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.blogId;
-      console.log("Hello Rhythm ")
+     this.blogId=this.router.getCurrentNavigation()?.extras?.state?.['data']?.blog?.blogId;
       this.isTrue=true;
     this.initEditForm();
      }
      else{
     this.initWriteForm();
      }
-   
+
 
 
 
@@ -73,7 +72,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
       title: new FormControl('',[Validators.required,Validators.pattern(REGEX.NAME)]),
       tags: new FormArray([]),
       previewImage:new FormControl('')
-  
+
     });
   }
   initEditForm(){
@@ -82,11 +81,11 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
       title: new FormControl(this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.title),
       tags: new FormArray([]),
       previewImage:new FormControl(this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.previewImage)
-  
+
     });
-   
+
     let tagsData =this.router.getCurrentNavigation()?.extras?.state?.['data'].tags;
-    
+
     for(let tagName of tagsData){
       this.tags.push({tagName: tagName});
     }
@@ -96,7 +95,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
   OnSubmit(){
     if(this.isTrue){
-      
+
       this.writeForm.value.tags.push(...this.tags);
       if(this.image){
     this.writeForm.value.previewImage=this.image
@@ -119,7 +118,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
           this.router.navigate([PATHS.MAIN.DASHBOARD])
         }
     )
-   
+
   }}
   get imageControls(){
     return this.imageForm?.controls;
@@ -144,7 +143,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-  
+
     if (value) {
       this.tags.push({tagName: value});
     }
@@ -186,7 +185,7 @@ imageFormSubmit(){
       this.file=res;
       this.image= res.data;
       });
-    
+
   }
 
 

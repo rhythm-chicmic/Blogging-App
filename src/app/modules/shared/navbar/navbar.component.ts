@@ -18,8 +18,8 @@ export class NavbarComponent implements OnInit{
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', swal.stopTimer)
-      toast.addEventListener('mouseleave', swal.resumeTimer)
+      toast.addEventListener('mouseenter', swal?.stopTimer)
+      toast.addEventListener('mouseleave', swal?.resumeTimer)
     }
   })
   isLogged:boolean=false;
@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit{
 
   }
  ngOnInit(){
-  this.AuthService.isLoggedin$.subscribe((res)=>{
+  this.AuthService?.isLoggedin$.subscribe((res)=>{
     this.isLogged=res;
   })
  }

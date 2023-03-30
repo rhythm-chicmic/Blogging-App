@@ -18,7 +18,6 @@ export class ForgotPasswordComponent {
   initForgetPasswordForm(){
     this.ForgetPasswordForm = this.fb.group({
       email:['',[Validators.required,Validators.email,Validators.pattern(REGEX.EMAIL)]],
-      // url:[`http://localhost:4200/`+PATHS.SHARED.RE_DIRECT,[]]
     })
   }
 get controls(){
@@ -26,7 +25,6 @@ get controls(){
 }
 ForgetPassword(){
   if((this.ForgetPasswordForm as FormGroup).valid){
-    console.log(this.ForgetPasswordForm.value);
     this.authService.forgetPassword(this.ForgetPasswordForm.value).subscribe((res)=>console.log(res));
 
   }else {

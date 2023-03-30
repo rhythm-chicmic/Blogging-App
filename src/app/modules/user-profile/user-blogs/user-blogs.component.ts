@@ -17,21 +17,21 @@ export class UserBlogsComponent {
 
   ngOnInit(){
     this.blogService.getUserBlogs().subscribe((res:any)=>{
-      this.allBlogs=res.data;
-     
+      this.allBlogs=res?.data;
+
     })
   }
   edit(id:string){
     let blogData;
      this.allBlogs.find((res:any)=>{
-     
-      if(res.blog.blogId===id){
+
+      if(res?.blog?.blogId===id){
         blogData= res;
     this.router.navigateByUrl(PATHS.MAIN?.BLOG_WRITE,{state:{data:blogData}})
 
       }
      })
-    
+
   }
   delete(id:string){
     swal.fire({
@@ -44,8 +44,8 @@ export class UserBlogsComponent {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.blogService.deleteBlog(id).subscribe();
-        this.blogService.getUserBlogs().subscribe((res:any)=>{
+        this.blogService?.deleteBlog(id).subscribe();
+        this.blogService?.getUserBlogs().subscribe((res:any)=>{
           this.allBlogs=res.data;
         })
         swal.fire(
@@ -56,6 +56,6 @@ export class UserBlogsComponent {
       }
     })
 
-   
+
   }
 }

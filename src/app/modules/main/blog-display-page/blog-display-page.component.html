@@ -3,33 +3,33 @@
     <div *ngFor="let blog of blogDetails" style="background-image: url(images/camila-cordeiro-114636.jpg); background-position: 50% 90.5px; " id="fh5co-title-box" >
         <div class="overlay"></div>
         <div class="page-title">
-            <img  [src]="blog.blog?.previewImage?env+blog.blog.previewImage:demo_img" alt="blog Imgage" height="500px" style="min-width: -webkit-fill-available;">
-            <span>{{blog.blog?.createdAt|date}}</span>
+            <img  [src]="blog?.blog?.previewImage?env+blog.blog.previewImage:demo_img" alt="blog Imgage" height="500px" style="min-width: -webkit-fill-available;">
+            <span>{{blog?.blog?.createdAt|date}}</span>
             <h1  id="title">{{blog?.blog?.title}}</h1>
         </div>
     </div>
 <div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
     <div class="container paddding" *ngFor="let blog of blogDetails; let i =index">
         <div class="row mx-0">
-            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft" [innerHTML]="blog.blog.content"></div>
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft" [innerHTML]="blog?.blog?.content"></div>
             <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
                 <div>
                     <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tags</div>
                 </div>
                 <div class="clearfix"></div>
-                    <mat-chip-listbox aria-label="Fish selection" *ngFor ="let tag of famousTags"> 
+                    <mat-chip-listbox aria-label="Fish selection" *ngFor ="let tag of famousTags">
                         <mat-chip-option>{{tag}}</mat-chip-option>
                     </mat-chip-listbox>
                 <div>
                     <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Most Popular</div>
                 </div>
-                <div class="row pb-3" *ngFor="let recommend of recommendedBlogs" (click)="viewBlog(recommend.blogId)">
+                <div class="row pb-3" *ngFor="let recommend of recommendedBlogs" (click)="viewBlog(recommend?.blogId)">
                     <div class="col-5 align-self-center">
                         <img [src]="recommend?.previewImage?env+recommend?.previewImage:demo_img" alt="img" class="fh5co_most_trading"/>
                     </div>
                     <div class="col-7 titlePage paddding">
-                        <div class="most_fh5co_treding_font"> {{recommend.title}}</div>
-                        <div class="most_fh5co_treding_font_123">{{recommend.createdAt|date}}</div>
+                        <div class="most_fh5co_treding_font"> {{recommend?.title}}</div>
+                        <div class="most_fh5co_treding_font_123">{{recommend?.createdAt|date}}</div>
                     </div>
                 </div>
             </div>

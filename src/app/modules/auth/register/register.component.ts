@@ -45,9 +45,8 @@ get controls(){
 }
 Register(){
   if((this.RegisterForm as FormGroup).valid){
-    console.log(this.RegisterForm.value.dateOfBirth);
     this.authService.signUp(this.RegisterForm.value).subscribe((res:any)=>{
-      localStorage.setItem(STORAGE_KEYS.TOKEN,res.data.token);
+      localStorage.setItem(STORAGE_KEYS.TOKEN,res?.data?.token);
     })
     this.formDirective.resetForm();
     this.Toast.fire({

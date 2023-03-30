@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit{
       const token = this.user.idToken
       this.service.googleLogin({token}).subscribe((res:any)=>{
         console.log(res)
-      localStorage.setItem(STORAGE_KEYS.TOKEN,res.data.token);
+      localStorage.setItem(STORAGE_KEYS.TOKEN,res?.data?.token);
       this.Toast.fire({
         icon: 'success',
         title: 'Signed in successfully'
@@ -76,7 +76,7 @@ login(){
 
     if(res?.data?.token){
 
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res?.data?.token);
       this.Toast.fire({
         icon: 'success',
         title: 'Signed in successfully'
@@ -85,11 +85,9 @@ login(){
       }
     })
     this.formDirective.resetForm();
-
     }
     else{
       this.submitted =false;
-
     }
 }
 forgetPassword(){

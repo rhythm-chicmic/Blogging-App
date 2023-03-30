@@ -1,5 +1,5 @@
 <section style="background-color: #eee;">
-  
+
     <div class="container py-5" *ngFor="let profile of userDetails">
       <div class="row">
         <div class="col-lg-4">
@@ -7,11 +7,11 @@
             <div class="card-body text-center">
               <img [src]="profile.profileImagePath?env+profile.profileImagePath:demo_img" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">{{profile.firstName+' '+profile.lastName}}</h5>
+              <h5 class="my-3">{{profile?.firstName+' '+profile?.lastName}}</h5>
               <p class="text-muted mb-1">Full Stack Developer</p>
               <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
               <div class="d-flex justify-content-center mb-2">
-              
+
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{profile.firstName+' '+profile.lastName}}</p>
+                  <p class="text-muted mb-0">{{profile?.firstName+' '+profile?.lastName}}</p>
                 </div>
               </div>
               <hr>
@@ -33,7 +33,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{profile.email}}</p>
+                  <p class="text-muted mb-0">{{profile?.email}}</p>
                 </div>
               </div>
               <hr>
@@ -42,7 +42,7 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">+91 {{profile.phoneNo}}</p>
+                  <p class="text-muted mb-0">+91 {{profile?.phoneNo}}</p>
                 </div>
               </div>
               <hr>
@@ -51,16 +51,16 @@
                   <p class="mb-0">Date of Birth</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{profile.dateOfBirth|date}}</p>
+                  <p class="text-muted mb-0">{{profile?.dateOfBirth|date}}</p>
                 </div>
               </div>
             </div>
           </div>
-  
-        
-  
-  
-  
+
+
+
+
+
           <div class="row">
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
@@ -133,4 +133,3 @@
       </div>
     </div>
   </section>
-  

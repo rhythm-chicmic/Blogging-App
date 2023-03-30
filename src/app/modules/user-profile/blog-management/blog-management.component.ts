@@ -26,16 +26,14 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
   toggleValue:boolean=false;
   ngOnInit(): void {
     this.userService.getAllProfiles().subscribe((res:any)=>{
-      console.log(res.data)
-      this.usersData=res.data
+      this.usersData=res?.data
     })
   }
   toggleRow(id:any) {
-    
+
     console.log(id)
     this.blogService.getBlogByUserId(id).subscribe((res:any)=>{
-      console.log(res)
-      this.blogData=res.data;
+      this.blogData=res?.data;
     })
     this.toggleValue=true;
   }
@@ -55,14 +53,13 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
   editBlog(id:string){
     let blogData;
      this.blogData.find((res:any)=>{
-      console.log(res.blog.blogId)
-      if(res.blog.blogId===id){
+      if(res?.blog?.blogId===id){
         blogData= res;
     this.router.navigateByUrl(PATHS.MAIN.BLOG_WRITE,{state:{data:blogData}})
 
       }
      })
-    
+
   }
   deleteBlog(id:string){
     swal.fire({
@@ -84,13 +81,12 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
         )
       }
     })
-     
+
   }
   getAllBlogs(){
-    this.blogService.getUserBlogs().subscribe((res:any)=>{
-      this.blogData=res.data;
-      console.log(res.data, "gg")
-    }) 
+    this.blogService?.getUserBlogs().subscribe((res:any)=>{
+      this.blogData=res?.data;
+    })
   }
-  
+
 }

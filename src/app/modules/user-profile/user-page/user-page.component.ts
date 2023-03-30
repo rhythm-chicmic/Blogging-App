@@ -11,9 +11,9 @@ export class UserPageComponent {
  constructor(private userService:UserProfileService){
 
     this.userService.getUserProfile().subscribe((res:any)=>{
-      this.isAdmin=res.data[0].isAdmin
+      this.isAdmin=res?.data[0]?.isAdmin
     })
-  
+
  }
 
 }

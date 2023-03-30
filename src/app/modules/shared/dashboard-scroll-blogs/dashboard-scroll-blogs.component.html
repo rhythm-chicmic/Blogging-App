@@ -8,11 +8,11 @@
   <mat-card class="example-card" >
     <div class="flex">
       <div class="div1">
-        <img class="img-div" (click)="viewUser(blog.getUser?.userId)" [src]="blog.getUser?.profileImagePath?env+blog.getUser?.profileImagePath:demo_img" alt="image">
-        <h1>{{blog.blog?.title}}</h1>
+        <img class="img-div" (click)="viewUser(blog?.getUser?.userId)" [src]="blog?.getUser?.profileImagePath?env+blog?.getUser?.profileImagePath:demo_img" alt="image">
+        <h1>{{blog?.blog?.title}}</h1>
       </div>
       <div class="div2">
-        <ng-container class="ngcon" *ngFor="let tag of blogPost[index]?.tags"> 
+        <ng-container class="ngcon" *ngFor="let tag of blogPost[index]?.tags">
           <div class="tag">{{tag}}</div>
         </ng-container>
       </div>
@@ -25,12 +25,12 @@
     <hr>
     <div style="text-align: center;" (click)="viewBlog(blog?.blog?.blogId)">
       <img class="image-hover" mat-card-image  width="350px" height="220px" style="border-radius: 20px;"
-      [src]="blog.blog?.previewImage?env+blog.blog.previewImage:demo_img"
+      [src]="blog?.blog?.previewImage?env+blog?.blog.previewImage:demo_img"
         alt="Photo of a Shiba Inu">
     </div>
     <mat-card-content class="content_display" (click)="viewBlog(blog?.blog?.blogId)">
-      <div [innerHTML]="blog.blog.content" style="word-wrap: break-word; "> </div>
-      <p style="font-style: italic;">{{blog.blog?.createdAt |date}}<span>17hrs</span></p>
+      <div [innerHTML]="blog?.blog?.content" style="word-wrap: break-word; "> </div>
+      <p style="font-style: italic;">{{blog?.blog?.createdAt |date}}<span>17hrs</span></p>
     </mat-card-content>
     <hr>
     <mat-card-actions>

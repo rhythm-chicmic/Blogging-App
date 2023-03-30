@@ -50,7 +50,7 @@
     <div style="height: 390px; overflow: scroll;">
     <ngx-editor  style="height:100px" class="content" [editor]="editor" formControlName="content"></ngx-editor>
   </div>
-    <mat-error *ngIf="controls['content'].errors?.['required'] && controls['content'].touched">
+    <mat-error *ngIf="controls['content']?.errors?.['required'] && controls['content'].touched">
       Field is Required
     </mat-error>
   </div>

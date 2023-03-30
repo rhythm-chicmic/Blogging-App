@@ -23,14 +23,13 @@ export class BlogDisplayPageComponent implements OnInit{
       }
     })
     this.blogService.getBlogById(this.id).subscribe((res:any)=>{
-      this.blogDetails=res.data;
+      this.blogDetails=res?.data;
     })
      this.blogService.getFamousTags().subscribe((res:any)=>{
-      this.famousTags=res.data
-     }) 
+      this.famousTags=res?.data
+     })
      this.blogService.getRecommendedBlogs().subscribe((res:any)=>{
-      console.log(res.data);
-      this.recommendedBlogs=res.data;
+      this.recommendedBlogs=res?.data;
      })
   }
   viewBlog(id:string){

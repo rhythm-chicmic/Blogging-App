@@ -19,7 +19,7 @@
           <td>
             <mat-icon type="button" (click)="blockUser()">block</mat-icon>
             <mat-icon type="button">delete</mat-icon>
-          
+
           </td>
         </tr>
       </tbody>
@@ -38,13 +38,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let blog of blogData">
-          <td>{{blog.blog?.blogId}}</td>
-          <td>{{blog.blog?.createdAt}}</td>
-          <td>{{blog.blog?.title}}</td>
+          <td>{{blog?.blog?.blogId}}</td>
+          <td>{{blog?.blog?.createdAt}}</td>
+          <td>{{blog?.blog?.title}}</td>
           <td>{{blog?.tags}}</td>
           <td>
-            <mat-icon type="button" (click)="editBlog(blog.blog?.blogId)">edit</mat-icon>
-            <mat-icon type="button" (click)="deleteBlog(blog.blog?.blogId)">delete</mat-icon>
+            <mat-icon type="button" (click)="editBlog(blog?.blog?.blogId)">edit</mat-icon>
+            <mat-icon type="button" (click)="deleteBlog(blog?.blog?.blogId)">delete</mat-icon>
           </td>
         </tr>
       </tbody>

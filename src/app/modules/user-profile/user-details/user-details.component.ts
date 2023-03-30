@@ -16,8 +16,7 @@ export class UserDetailsComponent implements OnInit{
   demo_img="https://material.angular.io/assets/img/examples/shiba2.jpg"
   ngOnInit(){
     this.userProfileService.getUserProfile().subscribe((res:any)=>{
-      console.log(res)
-      this.userDetails= res.data;
+      this.userDetails= res?.data;
     })
   }
   async notifyMessage(){
@@ -30,7 +29,7 @@ export class UserDetailsComponent implements OnInit{
       },
       showCancelButton: true
     })
-    
+
     if (text) {
       Swal.fire(text)
     }

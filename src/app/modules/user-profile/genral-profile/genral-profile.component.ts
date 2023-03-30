@@ -20,7 +20,7 @@ export class GenralProfileComponent implements OnInit{
       console.log(this.id);
   })
     this.userProfileService.getGeneralProfile(this.id).subscribe((res:any)=>{
-      this.userDetails=res.data
+      this.userDetails=res?.data
     })
   }
   notifyMessage(){
