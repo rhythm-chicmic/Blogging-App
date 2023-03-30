@@ -15,7 +15,7 @@ import swal from 'sweetalert2'
 })
 
 export class LoginComponent implements OnInit{
- 
+
   LoginForm!:FormGroup
   @ViewChild(FormGroupDirective)
   formDirective!:FormGroupDirective;
@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit{
       })
         this.router.navigate([PATHS.MAIN.DASHBOARD])
       });
-      
-     
+
+
     });
   }
 
@@ -70,9 +70,10 @@ get controls(){
 login(){
    if((this.LoginForm as FormGroup).valid){
     console.log(this.LoginForm.value);
+
     this.service.login(this.LoginForm.value).subscribe((res:any)=>{
       console.log(res)
-      
+
     if(res?.data?.token){
 
       localStorage.setItem('token', res.data.token);
@@ -84,7 +85,7 @@ login(){
       }
     })
     this.formDirective.resetForm();
-   
+
     }
     else{
       this.submitted =false;

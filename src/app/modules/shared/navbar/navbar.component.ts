@@ -9,7 +9,7 @@ import swal from 'sweetalert2'
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent{
+export class NavbarComponent implements OnInit{
   id:string='';
   Toast = swal.mixin({
     toast: true,
@@ -29,19 +29,23 @@ export class NavbarComponent{
     }
 
   }
- 
+ ngOnInit(){
+  this.AuthService.isLoggedin$.subscribe((res)=>{
+    this.isLogged=res;
+  })
+ }
 
-  
+
   signIn(){
     this.route.navigate([PATHS.AUTH.LOGIN]);
   }
   signUp(){
-    
+
     this.route.navigate([PATHS.AUTH.REGISTER]);
   }
   write(){
     this.route.navigate([PATHS.MAIN.BLOG_WRITE]);
-    
+
   }
   bloggerClick(){
     this.route.navigate([PATHS.MAIN.DASHBOARD])
@@ -52,7 +56,7 @@ export class NavbarComponent{
   SignOut(){
     this.AuthService.logOut().subscribe((res)=>{
       console.log(res);
-      localStorage.clear()  
+      localStorage.clear()
       this.Toast?.fire({
         icon: 'success',
         title: 'LogOut successfully'
