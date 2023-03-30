@@ -3,9 +3,7 @@
     <input type="search" id="form1" class="form-control" placeholder="Search Blogs" (keyup)="Search($event)" />
   </div>
 </div>
-<marquee *ngIf="true">
-  One or more lines or text message or image
-</marquee>
+<hr>
 <ng-container class="card-container" *ngFor="let blog of blogPost;let index =index" >
   <mat-card class="example-card" >
     <div class="flex">

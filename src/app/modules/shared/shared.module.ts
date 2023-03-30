@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReRoutingComponent } from './re-routing/re-routing.component'
 import {MatCardModule} from '@angular/material/card';;
 import { RouterModule, Routes } from '@angular/router';
+import {MatBadgeModule} from '@angular/material/badge';
 import { PATHS } from 'src/app/common/constants';
 import {StyleClassModule} from 'primeng/styleclass';
 import {MatMenuModule} from '@angular/material/menu';
@@ -33,6 +34,7 @@ const routes:Routes=[
   ],
   imports: [
     MatChipsModule,
+    MatBadgeModule,
     CommonModule,
     StyleClassModule,
     MatProgressSpinnerModule,
