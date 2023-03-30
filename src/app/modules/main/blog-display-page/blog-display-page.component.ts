@@ -18,7 +18,9 @@ export class BlogDisplayPageComponent implements OnInit{
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params=>{
+      if(!this.id){
       this.id= params['id'];
+      }
     })
     this.blogService.getBlogById(this.id).subscribe((res:any)=>{
       this.blogDetails=res.data;
@@ -30,6 +32,10 @@ export class BlogDisplayPageComponent implements OnInit{
       console.log(res.data);
       this.recommendedBlogs=res.data;
      })
+  }
+  viewBlog(id:string){
+    this.id=id
+    this.ngOnInit();
   }
 }
 

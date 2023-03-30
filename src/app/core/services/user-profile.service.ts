@@ -14,7 +14,7 @@ export class UserProfileService {
     return this.httpService.get(this.path+APIS.USER.USER_GET);
   }
   getGeneralProfile(id:string){
-    return this.httpService.get(this.path+APIS.USER.GUEST_GET+id);
+    return this.httpService.get(this.path+APIS.USER.GUEST_GET+id+'&pageNo=1');
   }
   getAllProfiles(){
     return this.httpService.get(this.path+APIS.USER.ALL_USERS);

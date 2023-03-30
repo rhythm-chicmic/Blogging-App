@@ -42,9 +42,9 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
   blockUser(){
     console.log("Blocked User")
   }
-
-
-
+  deleteUser(){
+    console.log("Deleted User")
+  }
 
   editBlog(id:string){
     let blogData;

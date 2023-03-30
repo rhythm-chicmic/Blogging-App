@@ -23,7 +23,7 @@
                 <div>
                     <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Most Popular</div>
                 </div>
-                <div class="row pb-3" *ngFor="let recommend of recommendedBlogs">
+                <div class="row pb-3" *ngFor="let recommend of recommendedBlogs" (click)="viewBlog(recommend.blogId)">
                     <div class="col-5 align-self-center">
                         <img [src]="recommend?.previewImage?env+recommend?.previewImage:demo_img" alt="img" class="fh5co_most_trading"/>
                     </div>
