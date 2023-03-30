@@ -103,7 +103,11 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
       }
       console.log(this.writeForm.value, "hello");
       this.WriteBlogService.putBlog(this.writeForm.value,this.blogId).subscribe(res=>console.log(res));
-      swal.fire("Good job!", "You clicked the button!", "success");
+      swal.fire("Good job!", "Blog Updated Successfully!", "success").then(
+        ()=>{
+          this.router.navigate([PATHS.MAIN.DASHBOARD])
+        }
+      );
     }
        else{
     this.writeForm.value.tags.push(...this.tags);
