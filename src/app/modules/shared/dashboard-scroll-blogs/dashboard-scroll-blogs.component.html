@@ -34,8 +34,8 @@
     </mat-card-content>
     <hr>
     <mat-card-actions>
-      <button mat-button (click)="liked()"><mat-icon>thumb_up</mat-icon>{{blog.blog?.likes}} Likes</button>
-      <button mat-button (click)="disliked()"><mat-icon>thumb_down</mat-icon>  {{blog.blog?.dislikes}} Dislikes</button>
+      <button mat-button (click)="likedandDisliked(blog?.blog?.blogId,1)"><mat-icon>thumb_up</mat-icon>{{blog?.blog?.likes}} Likes</button>
+      <button mat-button (click)="likedandDisliked(blog?.blog?.blogId,2)"><mat-icon>thumb_down</mat-icon>  {{blog?.blog?.dislikes}} Dislikes</button>
     </mat-card-actions>
   </mat-card>
 

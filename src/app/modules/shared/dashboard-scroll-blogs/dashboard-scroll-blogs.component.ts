@@ -4,7 +4,7 @@ import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { UserProfileService } from 'src/app/core/services/user-profile.service';
+import { SocketService } from 'src/app/core/services/socket.service';
 @Component({
   selector: 'app-dashboard-scroll-blogs',
   templateUrl: './dashboard-scroll-blogs.component.html',
@@ -12,13 +12,13 @@ import { UserProfileService } from 'src/app/core/services/user-profile.service';
 })
 export class DashboardScrollBlogsComponent {
   blogPost:any=[]
+
   private readonly searchSubject = new Subject<string | undefined>();
   env:string = environment.BASE_URL +'/'
   demo_img:string = "https://material.angular.io/assets/img/examples/shiba2.jpg"
-  constructor(private blogService:WriteBlogService,private router:Router,private userProfileService:UserProfileService){
+  constructor(private blogService:WriteBlogService,private router:Router,private socketService:SocketService){
     this.blogService.getBlog().subscribe((res:any)=>{
-      console.log(res.data)
-      console.log(res)
+     
 
       this.blogPost = res?.data
     })
@@ -28,23 +28,18 @@ export class DashboardScrollBlogsComponent {
     
   }
 
-  liked(){
+  likedandDisliked(id:string,value:number){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
-
+      this.socketService?.likeAndDislike(id,value).then((val:any)=>console.log(val));
+      this.blogService.getBlog().subscribe((res:any)=>{
+        this.blogPost = res?.data
+      })
     }
     else{
       this.router.navigate([PATHS.AUTH.LOGIN]);
     }
   }
 
-  disliked(){
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
-
-    }
-    else{
-      this.router.navigate([PATHS.AUTH.LOGIN]);
-    }
-  }
   viewBlog(id:string){
     this.router.navigate([PATHS.MAIN.BLOG_DISPLAY+`/${id}`]);
   }

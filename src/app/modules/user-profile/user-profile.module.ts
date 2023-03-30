@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { GenralProfileComponent } from './genral-profile/genral-profile.component';
 import { BlogManagementComponent } from './blog-management/blog-management.component'
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 const routes:Routes=[
   {path:PATHS.USER_PROFILE.USER_PAGE,component:UserPageComponent},
   {path:PATHS.USER_PROFILE.GENERAL_PAGE+'/:id',component:GenralProfileComponent},
@@ -36,6 +36,7 @@ const routes:Routes=[
   imports: [
     MatTableModule,
     MatPaginatorModule,
+    SweetAlert2Module,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
 import { Editor,Toolbar,Validators as validators } from 'ngx-editor';
+import swal from 'sweetalert2'
 
 
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
@@ -102,13 +103,19 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
       }
       console.log(this.writeForm.value, "hello");
       this.WriteBlogService.putBlog(this.writeForm.value,this.blogId).subscribe(res=>console.log(res));
-       }
+      swal.fire("Good job!", "You clicked the button!", "success");
+    }
        else{
     this.writeForm.value.tags.push(...this.tags);
     this.writeForm.value.previewImage=this.image;
     console.log(this.writeForm.value);
     this.WriteBlogService.postBlog(this.writeForm.value).subscribe(res=>console.log(res));
-    this.router.navigate([PATHS.MAIN.DASHBOARD])
+    swal.fire("Good job!", "Blog Created Successfully!", "success").then(
+        ()=>{
+          this.router.navigate([PATHS.MAIN.DASHBOARD])
+        }
+    )
+   
   }}
   get imageControls(){
     return this.imageForm?.controls;
@@ -172,7 +179,6 @@ imageFormSubmit(){
     data.append('file',this.image);
     data.append('type',this.imageForm?.value.type);
     this.WriteBlogService.postImage(data).subscribe((res:any)=>{
-      console.log(res.data);
       this.file=res;
       this.image= res.data;
       });

@@ -12,6 +12,7 @@ import { TagInputModule } from 'ngx-chips';
 import {MatChipsModule} from '@angular/material/chips';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AuthGuardGuard } from 'src/app/core/guards/auth-guard.guard';
 import { BlogDisplayPageComponent } from './blog-display-page/blog-display-page.component';
 const routes:Routes=[
@@ -27,8 +28,10 @@ const routes:Routes=[
   ],
   imports: [
     MatButtonModule,
+    SweetAlert2Module,
     MatChipsModule,
     TagInputModule,
+    SweetAlert2Module,
     MatInputModule,
     CommonModule,
     ReactiveFormsModule,
