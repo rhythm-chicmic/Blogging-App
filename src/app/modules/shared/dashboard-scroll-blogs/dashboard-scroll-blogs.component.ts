@@ -5,6 +5,7 @@ import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { SocketService } from 'src/app/core/services/socket.service';
+import swal from 'sweetalert2'
 @Component({
   selector: 'app-dashboard-scroll-blogs',
   templateUrl: './dashboard-scroll-blogs.component.html',
@@ -12,7 +13,17 @@ import { SocketService } from 'src/app/core/services/socket.service';
 })
 export class DashboardScrollBlogsComponent {
   blogPost:any=[]
-
+  Toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+  })
   private readonly searchSubject = new Subject<string | undefined>();
   env:string = environment.BASE_URL +'/'
   demo_img:string = "https://material.angular.io/assets/img/examples/shiba2.jpg"
@@ -32,7 +43,19 @@ export class DashboardScrollBlogsComponent {
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.socketService?.likeAndDislike(id,value).then((val:any)=>console.log(val));
       this.blogService.getBlog().subscribe((res:any)=>{
-        this.blogPost = res?.data
+        if(value===1){
+        this.Toast.fire({
+          icon: 'success',
+          title: 'Blog Liked'
+        })
+      }
+      else{
+        this.Toast.fire({
+          icon: 'warning',
+          title: 'Blog Disliked'
+        })
+      }
+        this.blogPost = res.data
       })
     }
     else{
