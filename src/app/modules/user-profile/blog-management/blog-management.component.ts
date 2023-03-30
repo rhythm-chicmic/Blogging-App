@@ -39,7 +39,9 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     this.toggleValue=true;
   }
 
-
+  blockUser(){
+    console.log("Blocked User")
+  }
 
 
 
