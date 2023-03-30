@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
-import { UserProfileService } from 'src/app/core/services/user-profile.service';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
+import swal from 'sweetalert2'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,7 +11,17 @@ import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 })
 export class NavbarComponent{
   id:string='';
-
+  Toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+  })
   isLogged:boolean=false;
   constructor(private route:Router, private AuthService:AuthenticateService,private blogService:WriteBlogService){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
@@ -43,7 +52,11 @@ export class NavbarComponent{
   SignOut(){
     this.AuthService.logOut().subscribe((res)=>{
       console.log(res);
-      localStorage.clear()
+      localStorage.clear()  
+      this.Toast?.fire({
+        icon: 'success',
+        title: 'LogOut successfully'
+      })
       this.route.navigate([PATHS.MAIN.DASHBOARD]);
     })
   }

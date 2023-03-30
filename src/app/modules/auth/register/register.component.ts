@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular
 import { Router } from '@angular/router';
 import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
+import swal from 'sweetalert2'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,6 +16,17 @@ export class RegisterComponent {
   RegisterForm!:FormGroup
   @ViewChild(FormGroupDirective)
   formDirective!:FormGroupDirective;
+  Toast =swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+  })
   constructor(private fb:FormBuilder, private authService:AuthenticateService,private router:Router){
     this.initRegisterForm();
   }
@@ -38,6 +50,10 @@ Register(){
       localStorage.setItem(STORAGE_KEYS.TOKEN,res.data.token);
     })
     this.formDirective.resetForm();
+    this.Toast.fire({
+      icon: 'success',
+      title: 'Account created successfully'
+    })
     this.router.navigate([PATHS.MAIN.DASHBOARD]);
     }
     else{

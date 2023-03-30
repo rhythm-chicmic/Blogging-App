@@ -14,7 +14,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const localToken = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    const localToken = localStorage.getItem(STORAGE_KEYS?.TOKEN);
 
     request=request.clone({headers:request.headers.set('Authorization' ,`bearer ${localToken}` || '')})
 

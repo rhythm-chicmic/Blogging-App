@@ -6,6 +6,8 @@ import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { STORAGE_KEYS } from 'src/app/common/constants';
 import { SocialUser } from '@abacritt/angularx-social-login';
+import swal from 'sweetalert2'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,6 +22,17 @@ export class LoginComponent implements OnInit{
   user!:SocialUser;
   loggedIn:any;
   submitted = false;
+    Toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+  })
   constructor(private fb:FormBuilder, private router :Router,public authService:SocialAuthService ,private service:AuthenticateService){
 
     this.initLoginForm();
@@ -40,7 +53,10 @@ export class LoginComponent implements OnInit{
       this.service.googleLogin({token}).subscribe((res:any)=>{
         console.log(res)
       localStorage.setItem(STORAGE_KEYS.TOKEN,res.data.token);
-
+      this.Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully'
+      })
         this.router.navigate([PATHS.MAIN.DASHBOARD])
       });
       
@@ -56,10 +72,19 @@ login(){
     console.log(this.LoginForm.value);
     this.service.login(this.LoginForm.value).subscribe((res:any)=>{
       console.log(res)
+      
+    if(res?.data?.token){
+
       localStorage.setItem('token', res.data.token);
+      this.Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully'
+      })
+       this.router.navigate([PATHS.MAIN.DASHBOARD]);
+      }
     })
     this.formDirective.resetForm();
-    this.router.navigate([PATHS.MAIN.DASHBOARD]);
+   
     }
     else{
       this.submitted =false;
