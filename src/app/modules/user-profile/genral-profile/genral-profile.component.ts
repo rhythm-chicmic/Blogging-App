@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
 import { environment } from 'src/environments/environment';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-genral-profile',
   templateUrl: './genral-profile.component.html',
@@ -22,5 +22,8 @@ export class GenralProfileComponent implements OnInit{
     this.userProfileService.getGeneralProfile(this.id).subscribe((res:any)=>{
       this.userDetails=res.data
     })
+  }
+  notifyMessage(){
+    console.log("Yes")
   }
 }
