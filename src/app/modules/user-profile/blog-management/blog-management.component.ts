@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
+import { PATHS } from 'src/app/common/constants';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { WriteBlogService } from 'src/app/core/services/write-blog.service';
   ],
 })
 export class BlogManagementComponent implements OnInit {
-constructor(private userService:UserProfileService,private blogService:WriteBlogService){}
+constructor(private userService:UserProfileService,private blogService:WriteBlogService,private router:Router){}
   usersData:any;
   blogData:any;
   toggleValue:boolean=false;
@@ -26,13 +28,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       console.log(res.data)
       this.usersData=res.data
     })
-    // this.blogService.getBlog().subscribe((res:any)=>{
-    //   this.blogData = res.data
-    // })
   }
-
-
-
   toggleRow(id:any) {
     
     console.log(id)
@@ -43,5 +39,29 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     this.toggleValue=true;
   }
 
+
+
+
+
+
+  editBlog(id:string){
+    let blogData;
+     this.blogData.find((res:any)=>{
+      console.log(res.blog.blogId)
+      if(res.blog.blogId===id){
+        blogData= res;
+    this.router.navigateByUrl(PATHS.MAIN.BLOG_WRITE,{state:{data:blogData}})
+
+      }
+     })
+    
+  }
+  deleteBlog(id:string){
+    this.blogService.deleteBlog(id).subscribe();
+    this.blogService.getUserBlogs().subscribe((res:any)=>{
+      this.blogData=res.data;
+      console.log(res.data)
+    })
+  }
   
 }

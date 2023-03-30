@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserProfileService } from 'src/app/core/services/user-profile.service';
 
 @Component({
   selector: 'app-user-page',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent {
+ isAdmin:boolean=false;
+ constructor(private userService:UserProfileService){
+
+    this.userService.getUserProfile().subscribe((res:any)=>{
+      this.isAdmin=res.data[0].isAdmin
+    })
+  
+ }
 
 }

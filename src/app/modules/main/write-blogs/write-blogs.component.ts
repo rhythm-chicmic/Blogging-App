@@ -25,6 +25,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   image:any;
   imageForm!:FormGroup
   addOnBlur = true;
+  isTrue:boolean=false
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   html!: '';
   tags: Tags[] = [];
@@ -32,7 +33,8 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
   constructor(private fb:FormBuilder,private router:Router,private WriteBlogService:WriteBlogService){
     if(router.getCurrentNavigation()?.extras?.state?.['data']){
      this.blogId=this.router.getCurrentNavigation()?.extras?.state?.['data'].blog.blogId;
-
+      console.log("Hello Rhythm ")
+      this.isTrue=true;
     this.initEditForm();
      }
      else{
@@ -92,7 +94,7 @@ export class WriteBlogsComponent implements OnInit, OnDestroy{
 
 
   OnSubmit(){
-    if(this.router.getCurrentNavigation()?.extras?.state?.['data']){
+    if(this.isTrue){
       
       this.writeForm.value.tags.push(...this.tags);
       if(this.image){

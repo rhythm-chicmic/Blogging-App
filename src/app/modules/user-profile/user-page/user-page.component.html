@@ -1,11 +1,29 @@
-<mat-tab-group>
-    <mat-tab label="User Profile">
+<ng-container *ngIf="!isAdmin">
+  <mat-tab-group >
+  <mat-tab label="User Profile">
+    <ng-template matTabContent>
+      <app-user-details></app-user-details>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Check My Blogs">
+    <ng-template matTabContent >
+      <app-user-blogs></app-user-blogs>
+    </ng-template> </mat-tab>
+   
+</mat-tab-group>
+</ng-container>
+
+<ng-container *ngIf="isAdmin">
+<mat-tab-group >
+  <mat-tab label="Admin Profile">
       <ng-template matTabContent>
         <app-user-details></app-user-details>
       </ng-template>
     </mat-tab>
-    <mat-tab label="Checkout Your Blogs">
-      <ng-template matTabContent>
-        <app-user-blogs></app-user-blogs>
+  <mat-tab label="Check All Blogs">
+      <ng-template matTabContent >
+        <app-blog-management></app-blog-management>
       </ng-template> </mat-tab>
   </mat-tab-group>
+</ng-container>
+  
