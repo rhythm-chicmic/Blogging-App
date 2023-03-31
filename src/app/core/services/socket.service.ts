@@ -22,10 +22,7 @@ export class SocketService {
    .build()
 // Socket initialization Ends
 constructor() {
-  this.startConnection().then((response:any)=>{
-    console.log('Connected');
-    this.reciveNoticeListner();
-  }).catch((err)=>console.log(err))
+  
 }
   startConnection(){
     return this.connection.start()

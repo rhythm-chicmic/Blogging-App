@@ -1,4 +1,4 @@
-import { Component, ViewChild,NgZone, OnInit, OnChanges } from '@angular/core';
+import { Component, ViewChild, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { PATHS, REGEX } from 'src/app/common/constants';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { SocketService } from 'src/app/core/services/socket.service';
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit,OnChanges{
+export class LoginComponent implements OnInit{
 
   LoginForm!:FormGroup
   @ViewChild(FormGroupDirective)
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit,OnChanges{
         icon: 'success',
         title: 'Signed in successfully'
       })
-      this.ngOnChanges();
+     
         this.router.navigate([PATHS.MAIN.DASHBOARD])
       });
 
@@ -69,9 +69,7 @@ export class LoginComponent implements OnInit,OnChanges{
 get controls(){
   return this.LoginForm.controls;
 }
-ngOnChanges(){
-  this.socketService.startConnection();
-}
+
 login(){
    if((this.LoginForm as FormGroup).valid){
 
@@ -92,7 +90,7 @@ login(){
         icon: 'success',
         title: 'Signed in successfully'
       })
-      this.ngOnChanges();
+      
        this.router.navigate([PATHS.MAIN.DASHBOARD]);
       }
     })

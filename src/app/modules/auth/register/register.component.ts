@@ -10,7 +10,7 @@ import swal from 'sweetalert2'
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnChanges{
+export class RegisterComponent{
   hide = true;
   startDate = new Date(1990, 0, 1);
   submitted = false;
@@ -55,14 +55,12 @@ Register(){
       icon: 'success',
       title: 'Account created successfully'
     })
-    this.ngOnChanges();
+ 
     this.router.navigate([PATHS.MAIN.DASHBOARD]);
     }
     else{
       this.submitted =false;
     }
 }
-ngOnChanges(){
-  this.socketService.startConnection();
-}
+
 }
