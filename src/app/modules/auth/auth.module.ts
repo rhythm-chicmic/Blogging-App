@@ -23,13 +23,14 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } 
 import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
 import { HttpRequestInterceptor } from 'src/app/core/interceptors/http-request.interceptor';
 import { IsLoginGuard } from 'src/app/core/guards/is-login.guard';
+import { AuthGuardGuard } from 'src/app/core/guards/auth-guard.guard';
 
 const routes:Routes=[
   { path: PARENT_PATHS.DEFAULT, redirectTo: PATHS.AUTH.LOGIN, pathMatch:'full' },
   { path: PATHS.AUTH.LOGIN, canActivate:[IsLoginGuard], component: LoginComponent },
   { path: PATHS.AUTH.REGISTER, canActivate:[IsLoginGuard],component: RegisterComponent },
   { path: PATHS.AUTH.FORGOT_PASSWORD,canActivate:[IsLoginGuard], component: ForgotPasswordComponent },
-  {path:PATHS.AUTH.RESET_PASSWORD,canActivate:[IsLoginGuard] ,component:ResetPasswordComponent}
+  {path:PATHS.AUTH.RESET_PASSWORD,canActivate:[AuthGuardGuard],component:ResetPasswordComponent}
 ]
 
 @NgModule({

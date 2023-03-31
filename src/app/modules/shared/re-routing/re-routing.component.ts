@@ -13,7 +13,6 @@ export class ReRoutingComponent implements OnInit{
     this.activeRoute.queryParams.subscribe((res)=>{
       let id = res['token'];
       localStorage.setItem(STORAGE_KEYS.TOKEN,id);
-
         })
         setTimeout(() => {
           this.router.navigate([PATHS.AUTH.RESET_PASSWORD])

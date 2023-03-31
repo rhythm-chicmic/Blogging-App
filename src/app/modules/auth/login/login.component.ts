@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit,OnChanges{
         icon: 'success',
         title: 'Signed in successfully'
       })
+      this.ngOnChanges();
         this.router.navigate([PATHS.MAIN.DASHBOARD])
       });
 
