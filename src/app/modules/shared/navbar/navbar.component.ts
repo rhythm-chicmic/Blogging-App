@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
+import { SocketService } from 'src/app/core/services/socket.service';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import swal from 'sweetalert2'
 @Component({
@@ -11,6 +13,8 @@ import swal from 'sweetalert2'
 })
 export class NavbarComponent implements OnInit{
   id:string='';
+  notificationArray:any;
+  totalMessages:number=0;
   Toast = swal.mixin({
     toast: true,
     position: 'top-end',
@@ -23,7 +27,7 @@ export class NavbarComponent implements OnInit{
     }
   })
   isLogged:boolean=false;
-  constructor(private route:Router, private AuthService:AuthenticateService,private blogService:WriteBlogService){
+  constructor(private route:Router, private AuthService:AuthenticateService,private socketService:SocketService,private blogService:WriteBlogService){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.isLogged=true;
     }
@@ -33,8 +37,26 @@ export class NavbarComponent implements OnInit{
   this.AuthService?.isLoggedin$.subscribe((res)=>{
     this.isLogged=res;
   })
+  this.socketService.notificationArray$.subscribe((res:any)=>{
+    this.notificationArray=res;
+    this.totalMessages=this.notificationArray.length;
+   
+    console.log(this.notificationArray)
+  })
  }
+ receiveMessage(){
+  console.log(this.notificationArray[0].noticeData)
+  swal.fire({
+    icon: 'success',
+    title: 'Oops...',
+    text: `${this.notificationArray[0]?.noticeData}`,
+    scrollbarPadding:false
+  },
+  ).then(()=>{
+  this.totalMessages=0;
 
+  })
+ }
 
   signIn(){
     this.route.navigate([PATHS.AUTH.LOGIN]);

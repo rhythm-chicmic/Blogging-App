@@ -30,7 +30,7 @@ const routes:Routes=[
     NavbarComponent,
     ReRoutingComponent,
     DashboardScrollBlogsComponent,
-    RecommendationScrollBlogsComponent
+    RecommendationScrollBlogsComponent,
   ],
   imports: [
     MatChipsModule,

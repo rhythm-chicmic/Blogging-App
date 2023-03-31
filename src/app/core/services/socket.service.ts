@@ -42,7 +42,7 @@ constructor() {
     this.connection.on('refreshNotice',(data)=>{
       return this.connection.invoke('GetNotice').then((res:any)=>{
         console.log(res.data)
-        this.notificationArray$=res.data;
+        this.notificationArray$.next(res.data);
 
       })
     })

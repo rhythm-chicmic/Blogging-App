@@ -15,7 +15,7 @@
 
     <div class="spacer"></div>
     <div class="demo-section">
-      <mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon>
+      <mat-icon matBadge="15" matBadgeColor="warn" (click)="receiveMessage()">home</mat-icon>
     </div>
     <a mat-button (click)="write()"><mat-icon> border_color</mat-icon>Write</a>
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon class="account_circle">account_circle</mat-icon></button>
