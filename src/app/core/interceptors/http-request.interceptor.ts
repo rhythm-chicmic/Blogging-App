@@ -28,6 +28,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           text: error?.error?.message,
         })
       }
+      else if(error.status===401){
+        localStorage.removeItem(STORAGE_KEYS.TOKEN);
+        Swal.fire({
+          icon: 'error',
+          title: 'Session Expired',
+          text: error?.error?.message,
+        })
+      }
       return throwError(error);
     }));
   }
