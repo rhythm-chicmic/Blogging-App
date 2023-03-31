@@ -4,6 +4,7 @@ import { HttpTransportType } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment.development';
 
 import { STORAGE_KEYS } from 'src/app/common/constants';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { STORAGE_KEYS } from 'src/app/common/constants';
 export class SocketService {
   private env=environment.BLOG_HUB
   token=localStorage.getItem(STORAGE_KEYS.TOKEN)||''
+  notificationArray$=new BehaviorSubject(['']);
   connection=new signalr.HubConnectionBuilder().withUrl(this.env,{
     skipNegotiation: true,
     transport: HttpTransportType.WebSockets,
@@ -40,6 +42,8 @@ constructor() {
     this.connection.on('refreshNotice',(data)=>{
       return this.connection.invoke('GetNotice').then((res:any)=>{
         console.log(res.data)
+        this.notificationArray$=res.data;
+
       })
     })
   }
