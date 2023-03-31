@@ -22,6 +22,7 @@ export class SocketService {
 constructor() {
   this.startConnection().then((response:any)=>{
     console.log('Connected');
+    this.reciveNoticeListner();
   }).catch((err)=>console.log(err))
 }
   startConnection(){
@@ -34,6 +35,13 @@ constructor() {
 
   sendNotice(data:string){
     return this.connection.invoke("sendNotice",data);
+  }
+  reciveNoticeListner(){
+    this.connection.on('refreshNotice',(data)=>{
+      return this.connection.invoke('GetNotice').then((res:any)=>{
+        console.log(res.data)
+      })
+    })
   }
   
 
