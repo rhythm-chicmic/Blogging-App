@@ -46,4 +46,5 @@ export class WriteBlogService {
   getRecommendedBlogs(){
     return this.httpService.get(this.path+APIS.WRITE_BLOG.RECOMMENDATIONS_BLOG);
   }
+  
 }

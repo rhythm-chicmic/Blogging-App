@@ -15,6 +15,9 @@
         <ng-container class="ngcon" *ngFor="let tag of blogPost[index]?.tags">
           <div class="tag">{{tag | titlecase}}</div>
         </ng-container>
+        <!-- <mat-chip-listbox class="ngcon" aria-label="Fish selection" *ngFor="let tag of blogPost[index]?.tags">
+          <mat-chip-option class="tag">{{tag|titlecase}}</mat-chip-option>
+      </mat-chip-listbox> -->
       </div>
       <div class="div3">
         <button mat-icon-button>

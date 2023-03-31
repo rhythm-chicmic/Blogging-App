@@ -38,13 +38,26 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     this.toggleValue=true;
   }
 
-  blockUser(){
-    swal.fire(
-      'Good job!',
-      'User Blocked',
-      'warning'
-    )
-    console.log("Blocked User")
+  blockUser(id:string){
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.postBlockUser(id).subscribe(res=>console.log(res))
+        swal.fire(
+          'Deleted!',
+          'User has been blocked.',
+          'success'
+        )
+      }
+    })
+   
   }
 
 
@@ -99,7 +112,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       if (result.isConfirmed) {
         swal.fire(
           'Deleted!',
-          'Userhas been deleted.',
+          'User has been deleted.',
           'success'
         )
       }

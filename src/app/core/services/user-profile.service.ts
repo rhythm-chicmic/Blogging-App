@@ -19,4 +19,7 @@ export class UserProfileService {
   getAllProfiles(){
     return this.httpService.get(this.path+APIS.USER.ALL_USERS);
   }
+  postBlockUser(id:string){
+   return this.httpService.post(this.path+APIS.USER.BLOCK_USER+id,''); 
+  }
 }

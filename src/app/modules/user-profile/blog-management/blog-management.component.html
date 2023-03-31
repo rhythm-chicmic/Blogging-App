@@ -18,7 +18,7 @@
           <td>{{data?.phoneNo}}</td>
           <td>{{data?.email}}</td>
           <td>
-            <mat-icon type="button" (click)="blockUser()">block</mat-icon>
+            <mat-icon type="button" (click)="blockUser(data?.userId)">block</mat-icon>
             <mat-icon type="button" (click)="deleteUser()">delete</mat-icon>
 
           </td>
