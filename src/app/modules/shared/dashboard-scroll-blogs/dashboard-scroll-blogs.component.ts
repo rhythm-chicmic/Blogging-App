@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { SocketService } from 'src/app/core/services/socket.service';
 import swal from 'sweetalert2'
-import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-dashboard-scroll-blogs',
   templateUrl: './dashboard-scroll-blogs.component.html',
@@ -29,7 +28,7 @@ export class DashboardScrollBlogsComponent{
   private readonly searchSubject = new Subject<string | undefined>();
   env:string = environment.BASE_URL +'/'
   demo_img:string = "https://material.angular.io/assets/img/examples/shiba2.jpg"
-  constructor(private ngzone:NgZone,private blogService:WriteBlogService,private router:Router,private socketService:SocketService){
+  constructor(private blogService:WriteBlogService,private router:Router,private socketService:SocketService){
     this.blogService.getBlog().subscribe((res:any)=>{
       this.blogPost = res?.data
     })
@@ -45,8 +44,11 @@ export class DashboardScrollBlogsComponent{
     let message:string=''
     let likeApi:any;
     let searchId:string=''
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN) && localStorage.getItem('userId')){
+       this.userId=localStorage.getItem('userId')||''
+      console.log(blogId,'----',this.userId,'-----',value);
       this.socketService?.likeAndDislike(blogId,this.userId,value).then((val:any)=>{
+        console.log(val);
           searchId=val?.data?.blogId
           likeApi=val
         message=val?.message
