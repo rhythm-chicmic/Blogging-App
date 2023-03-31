@@ -11,7 +11,7 @@ export class AuthenticateService {
   private path = environment.BASE_URL;
   constructor(private httpService:HttpClient) {}
 
-  isLoggedin$ = new BehaviorSubject(false);
+  isLoggedin$ = new BehaviorSubject(localStorage.getItem('token')?true:false);
 
 
   login(data:loginModel){
