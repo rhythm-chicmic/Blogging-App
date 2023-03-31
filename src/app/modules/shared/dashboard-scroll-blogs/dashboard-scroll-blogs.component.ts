@@ -13,7 +13,7 @@ import swal from 'sweetalert2'
 })
 export class DashboardScrollBlogsComponent{
   blogPost:any;
-  userId=localStorage.getItem('userId')|| ''
+  userId=localStorage.getItem(STORAGE_KEYS.USER_TOKEN)|| ''
   Toast = swal.mixin({
     toast: true,
     position: 'top-end',
@@ -44,8 +44,8 @@ export class DashboardScrollBlogsComponent{
     let message:string=''
     let likeApi:any;
     let searchId:string=''
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN) && localStorage.getItem('userId')){
-       this.userId=localStorage.getItem('userId')||''
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN) && localStorage.getItem(STORAGE_KEYS.USER_TOKEN)){
+       this.userId=localStorage.getItem(STORAGE_KEYS.USER_TOKEN)||''
       console.log(blogId,'----',this.userId,'-----',value);
       this.socketService?.likeAndDislike(blogId,this.userId,value).then((val:any)=>{
         console.log(val);

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit{
       this.loggedIn = (user != null);
       const token = this.user.idToken
       this.service.googleLogin({token}).subscribe((res:any)=>{
-        localStorage.setItem('userId',res?.data?.userID)
+        localStorage.setItem(STORAGE_KEYS.USER_TOKEN,res?.data?.userID)
       localStorage.setItem(STORAGE_KEYS.TOKEN,res?.data?.token);
       this.Toast.fire({
         icon: 'success',

@@ -59,7 +59,9 @@ export const PATHS = {
       REGISTER:"/api/v1/user/registration",
       USER_GET: "/api/v1/user/myProfile",
       GUEST_GET: "/api/v1/user?id=",
-      ALL_USERS:"/api/v1/user?pageNo=1"
+      ALL_USERS:"/api/v1/user?pageNo=1",
+      BLOCK_USER: "/api/v1/user/blockUser?id=",
+      UNBLOCK_USER: "/api/v1/user/unblockUser?id="
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
@@ -83,6 +85,7 @@ export const PATHS = {
     }
   }
   export const STORAGE_KEYS={
-    TOKEN:'token'
+    TOKEN:'token',
+    USER_TOKEN:'userId'
   }
 

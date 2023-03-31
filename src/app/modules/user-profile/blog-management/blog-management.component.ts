@@ -46,9 +46,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     )
     console.log("Blocked User")
   }
-  deleteUser(){
-    console.log("Deleted User")
-  }
+
 
   editBlog(id:string){
     let blogData;
@@ -86,6 +84,25 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
   getAllBlogs(){
     this.blogService?.getUserBlogs().subscribe((res:any)=>{
       this.blogData=res?.data;
+    })
+  }
+  deleteUser(){
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swal.fire(
+          'Deleted!',
+          'Userhas been deleted.',
+          'success'
+        )
+      }
     })
   }
 

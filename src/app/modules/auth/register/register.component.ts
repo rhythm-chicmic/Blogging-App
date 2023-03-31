@@ -47,7 +47,7 @@ get controls(){
 Register(){
   if((this.RegisterForm as FormGroup).valid){
     this.authService.signUp(this.RegisterForm.value).subscribe((res:any)=>{
-      localStorage.setItem('userId',res?.data?.userID)
+      localStorage.setItem(STORAGE_KEYS.USER_TOKEN,res?.data?.userID)
       localStorage.setItem(STORAGE_KEYS.TOKEN,res?.data?.token);
     })
     this.formDirective.resetForm();

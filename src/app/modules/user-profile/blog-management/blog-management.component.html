@@ -1,3 +1,4 @@
+<hr>
 <div class="wrapper">
   <div class="table-container">
     <table class="table table-bordered table-striped table-hover">
@@ -13,12 +14,12 @@
       <tbody class="table1">
         <tr  *ngFor="let data of usersData" (click)="toggleRow(data.userId)">
           <td>{{data?.userId}}</td>
-          <td>{{data?.firstName}}</td>
+          <td>{{data?.firstName+' '+data?.lastName|titlecase}}</td>
           <td>{{data?.phoneNo}}</td>
           <td>{{data?.email}}</td>
           <td>
             <mat-icon type="button" (click)="blockUser()">block</mat-icon>
-            <mat-icon type="button">delete</mat-icon>
+            <mat-icon type="button" (click)="deleteUser()">delete</mat-icon>
 
           </td>
         </tr>
