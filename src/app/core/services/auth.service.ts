@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { forgotPasswordModel, googleLoginModel, loginModel, resetPasswordModel, signUpModel } from 'src/app/common/interfaces';
-import { APIS } from 'src/app/common/constants';
+import { APIS, STORAGE_KEYS } from 'src/app/common/constants';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
@@ -15,11 +15,15 @@ export class AuthenticateService {
 
 
   login(data:loginModel){
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.isLoggedin$.next(true);
+    }
       return this.httpService.post(this.path+APIS.AUTH.LOGIN,data);
   }
   signUp(data:signUpModel){
-    this.isLoggedin$.next(true);
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
+      this.isLoggedin$.next(true);
+    }
     return this.httpService.post(this.path+APIS.USER.REGISTER,data);
   }
   googleLogin(data:googleLoginModel){

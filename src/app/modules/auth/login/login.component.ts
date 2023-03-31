@@ -71,11 +71,9 @@ login(){
    if((this.LoginForm as FormGroup).valid){
 
     this.service.login(this.LoginForm.value).subscribe((res:any)=>{
-      
-      localStorage.setItem('userId',res?.data?.userID);
-
+          console.log(res)
     if(res?.data?.token){
-
+      localStorage.setItem('userId',res?.data?.userID);
       localStorage.setItem('token', res?.data?.token);
       this.Toast.fire({
         icon: 'success',
@@ -87,6 +85,12 @@ login(){
     this.formDirective.resetForm();
     }
     else{
+      swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Wrong Credentials!',
+   
+      })
       this.submitted =false;
     }
 }
