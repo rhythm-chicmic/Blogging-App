@@ -15,15 +15,13 @@ export class AuthenticateService {
 
 
   login(data:loginModel){
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.isLoggedin$.next(true);
-    }
       return this.httpService.post(this.path+APIS.AUTH.LOGIN,data);
   }
   signUp(data:signUpModel){
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
+    
       this.isLoggedin$.next(true);
-    }
+    
     return this.httpService.post(this.path+APIS.USER.REGISTER,data);
   }
   googleLogin(data:googleLoginModel){

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
@@ -12,7 +12,7 @@ import { NgZone } from '@angular/core';
   templateUrl: './dashboard-scroll-blogs.component.html',
   styleUrls: ['./dashboard-scroll-blogs.component.scss']
 })
-export class DashboardScrollBlogsComponent {
+export class DashboardScrollBlogsComponent{
   blogPost:any;
   userId=localStorage.getItem('userId')|| ''
   Toast = swal.mixin({
@@ -39,7 +39,9 @@ export class DashboardScrollBlogsComponent {
     
   }
 
+
   likedandDisliked(blogId:string,value:number){
+    
     let message:string=''
     let likeApi:any;
     let searchId:string=''
@@ -49,9 +51,15 @@ export class DashboardScrollBlogsComponent {
           likeApi=val
         message=val?.message
         if(message!=='Success' && value===1){
+          this.blogPost.find((value:any)=>{
+            if(value.blog.blogId===searchId){
+              value.blog.likes=val?.data?.likes
+              value.blog.dislikes=val?.data?.dislikes
+            }
+          })
           this.Toast.fire({
             icon: 'warning',
-            title: 'Blog Already Liked'
+            title: 'Like Removed'
           })
         }
         else if(value===1 && message==='Success'){
@@ -67,9 +75,15 @@ export class DashboardScrollBlogsComponent {
           })
         }
         else if(value===2 && message!=='Success'){
+          this.blogPost.find((value:any)=>{
+            if(value.blog.blogId===searchId){
+              value.blog.likes=val?.data?.likes
+              value.blog.dislikes=val?.data?.dislikes
+            }
+          })
           this.Toast.fire({
             icon: 'warning',
-            title: 'Blog Already Disliked'
+            title: 'Dislike Removed'
           })
         }
         else if (value===2 && message==='Success'){

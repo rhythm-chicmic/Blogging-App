@@ -1,4 +1,4 @@
-import { Component, ViewChild,NgZone, OnInit } from '@angular/core';
+import { Component, ViewChild,NgZone, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { PATHS, REGEX } from 'src/app/common/constants';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { STORAGE_KEYS } from 'src/app/common/constants';
 import { SocialUser } from '@abacritt/angularx-social-login';
 import swal from 'sweetalert2'
+import { SocketService } from 'src/app/core/services/socket.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import swal from 'sweetalert2'
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit,OnChanges{
 
   LoginForm!:FormGroup
   @ViewChild(FormGroupDirective)
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit{
       toast.addEventListener('mouseleave', swal.resumeTimer)
     }
   })
-  constructor(private fb:FormBuilder, private router :Router,public authService:SocialAuthService ,private service:AuthenticateService){
+  constructor(private socketService:SocketService,private fb:FormBuilder, private router :Router,public authService:SocialAuthService ,private service:AuthenticateService){
 
     this.initLoginForm();
   }
@@ -67,11 +68,22 @@ export class LoginComponent implements OnInit{
 get controls(){
   return this.LoginForm.controls;
 }
+ngOnChanges(){
+  this.socketService.startConnection();
+}
 login(){
    if((this.LoginForm as FormGroup).valid){
 
     this.service.login(this.LoginForm.value).subscribe((res:any)=>{
           console.log(res)
+        if(res?.statusCode===404){
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Wrong Credentials!',
+       
+          })
+        }
     if(res?.data?.token){
       localStorage.setItem('userId',res?.data?.userID);
       localStorage.setItem('token', res?.data?.token);
@@ -79,6 +91,7 @@ login(){
         icon: 'success',
         title: 'Signed in successfully'
       })
+      this.ngOnChanges();
        this.router.navigate([PATHS.MAIN.DASHBOARD]);
       }
     })

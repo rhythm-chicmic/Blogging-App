@@ -1,15 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
 import { AuthenticateService } from 'src/app/core/services/auth.service';
+import { SocketService } from 'src/app/core/services/socket.service';
 import swal from 'sweetalert2'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnChanges{
   hide = true;
   startDate = new Date(1990, 0, 1);
   submitted = false;
@@ -27,7 +28,7 @@ export class RegisterComponent {
       toast.addEventListener('mouseleave', swal.resumeTimer)
     }
   })
-  constructor(private fb:FormBuilder, private authService:AuthenticateService,private router:Router){
+  constructor(private socketService:SocketService,private fb:FormBuilder, private authService:AuthenticateService,private router:Router){
     this.initRegisterForm();
   }
   initRegisterForm(){
@@ -46,6 +47,7 @@ get controls(){
 Register(){
   if((this.RegisterForm as FormGroup).valid){
     this.authService.signUp(this.RegisterForm.value).subscribe((res:any)=>{
+      localStorage.setItem('UserId',res?.data?.userID)
       localStorage.setItem(STORAGE_KEYS.TOKEN,res?.data?.token);
     })
     this.formDirective.resetForm();
@@ -53,10 +55,14 @@ Register(){
       icon: 'success',
       title: 'Account created successfully'
     })
+    this.ngOnChanges();
     this.router.navigate([PATHS.MAIN.DASHBOARD]);
     }
     else{
       this.submitted =false;
     }
+}
+ngOnChanges(){
+  this.socketService.startConnection();
 }
 }
