@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
       this.loggedIn = (user != null);
       const token = this.user.idToken
       this.service.googleLogin({token}).subscribe((res:any)=>{
-        console.log(res)
+        localStorage.setItem('userId',res?.data?.userID)
       localStorage.setItem(STORAGE_KEYS.TOKEN,res?.data?.token);
       this.Toast.fire({
         icon: 'success',
@@ -69,10 +69,10 @@ get controls(){
 }
 login(){
    if((this.LoginForm as FormGroup).valid){
-    console.log(this.LoginForm.value);
 
     this.service.login(this.LoginForm.value).subscribe((res:any)=>{
-      console.log(res)
+      
+      localStorage.setItem('userId',res?.data?.userID);
 
     if(res?.data?.token){
 

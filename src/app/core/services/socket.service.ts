@@ -31,15 +31,15 @@ constructor() {
     return this.connection.start()
   }
 
-  likeAndDislike(id:string,value:number){
-    return this.connection.invoke("likeAndDislike",id,value);
+  likeAndDislike(blogId:string,userId:string,value:number){
+    return this.connection.invoke("likeAndDislike",blogId,userId,value);
   }
 
   sendNotice(data:string){
     return this.connection.invoke("sendNotice",data);
   }
   reciveNoticeListner(){
-    this.connection.on('refreshNotice',(data)=>{
+    this.connection.on('refreshNotice',()=>{
       return this.connection.invoke('GetNotice').then((res:any)=>{
         console.log(res.data)
         this.notificationArray$.next(res.data);

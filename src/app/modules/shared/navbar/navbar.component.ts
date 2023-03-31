@@ -6,6 +6,7 @@ import { AuthenticateService } from 'src/app/core/services/auth.service';
 import { SocketService } from 'src/app/core/services/socket.service';
 import { WriteBlogService } from 'src/app/core/services/write-blog.service';
 import swal from 'sweetalert2'
+import { ShowMessagesComponent } from '../show-messages/show-messages.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -27,7 +28,7 @@ export class NavbarComponent implements OnInit{
     }
   })
   isLogged:boolean=false;
-  constructor(private route:Router, private AuthService:AuthenticateService,private socketService:SocketService,private blogService:WriteBlogService){
+  constructor(private route:Router,private modal:NgbModal ,private AuthService:AuthenticateService,private socketService:SocketService,private blogService:WriteBlogService){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.isLogged=true;
     }
@@ -40,22 +41,12 @@ export class NavbarComponent implements OnInit{
   this.socketService.notificationArray$.subscribe((res:any)=>{
     this.notificationArray=res;
     this.totalMessages=this.notificationArray.length;
-   
-    console.log(this.notificationArray)
   })
  }
  receiveMessage(){
-  console.log(this.notificationArray[0].noticeData)
-  swal.fire({
-    icon: 'success',
-    title: 'Oops...',
-    text: `${this.notificationArray[0]?.noticeData}`,
-    scrollbarPadding:false
-  },
-  ).then(()=>{
-  this.totalMessages=0;
 
-  })
+  this.modal.open(ShowMessagesComponent)
+  this.totalMessages=0;
  }
 
   signIn(){

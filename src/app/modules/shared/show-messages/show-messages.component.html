@@ -1,0 +1,17 @@
+<main role="main" class="container bootdey.com">
+ 
+  
+    <div class="my-3 p-3 bg-white rounded box-shadow" >
+      <h3 class="border-bottom border-gray pb-2 mb-0">Recent updates</h3>
+      <div class="media text-muted pt-3" *ngFor="let data of totalMessages">
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong class="d-block text-gray-dark">@Administrator</strong>
+                    {{data?.noticeData}}
+        </p>
+        <p>{{data?.creationTime|date:'short'}}</p>
+      </div>
+      <small class="d-block text-right mt-3">
+      <button class="btn btn-warning" (click)="dismiss()">Close</button>
+      </small>
+    </div>
+  </main>

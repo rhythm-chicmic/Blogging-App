@@ -13,6 +13,7 @@ import swal from 'sweetalert2'
 })
 export class DashboardScrollBlogsComponent {
   blogPost:any=[]
+  userId=localStorage.getItem('userId')|| ''
   Toast = swal.mixin({
     toast: true,
     position: 'top-end',
@@ -29,8 +30,6 @@ export class DashboardScrollBlogsComponent {
   demo_img:string = "https://material.angular.io/assets/img/examples/shiba2.jpg"
   constructor(private blogService:WriteBlogService,private router:Router,private socketService:SocketService){
     this.blogService.getBlog().subscribe((res:any)=>{
-     
-
       this.blogPost = res?.data
     })
   }
@@ -39,9 +38,9 @@ export class DashboardScrollBlogsComponent {
     
   }
 
-  likedandDisliked(id:string,value:number){
+  likedandDisliked(blogId:string,value:number){
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
-      this.socketService?.likeAndDislike(id,value).then((val:any)=>console.log(val));
+      this.socketService?.likeAndDislike(blogId,this.userId,value).then((val:any)=>console.log(val));
       this.blogService.getBlog().subscribe((res:any)=>{
         if(value===1){
         this.Toast.fire({

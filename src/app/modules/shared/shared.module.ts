@@ -20,6 +20,7 @@ import { CardModule } from 'primeng/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DashboardScrollBlogsComponent } from './dashboard-scroll-blogs/dashboard-scroll-blogs.component';
 import { RecommendationScrollBlogsComponent } from './recommendation-scroll-blogs/recommendation-scroll-blogs.component';
+import { ShowMessagesComponent } from './show-messages/show-messages.component';
 const routes:Routes=[
   {path:PATHS.SHARED.RE_DIRECT,component:ReRoutingComponent},
   {path:PATHS.SHARED.NAVBAR,component:NavbarComponent}
@@ -31,6 +32,7 @@ const routes:Routes=[
     ReRoutingComponent,
     DashboardScrollBlogsComponent,
     RecommendationScrollBlogsComponent,
+    ShowMessagesComponent,
   ],
   imports: [
     MatChipsModule,
