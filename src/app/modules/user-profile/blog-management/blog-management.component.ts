@@ -33,6 +33,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     })
   }
 
+  /*Pagination Starts*/
   AllUsers(page:number){
     this.userService.getAllProfiles(page).subscribe((res:any)=>{
       this.usersData=res?.data
@@ -50,7 +51,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       this.AllUsers(this.page)
     
   }
-
+/*Pagination Ends*/
 
 
   toggleRow(id:any) {
@@ -62,7 +63,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     this.toggleValue=true;
   }
 
-  blockUser(id:string){
+  blockUser(id:string,type:number){
     swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -70,21 +71,20 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, block it!'
+      confirmButtonText: 'Yes!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.deleteBlockUser(id).subscribe(res=>console.log(res))
+        this.userService.deleteBlockUser(id,type).subscribe(res=>console.log(res))
         swal.fire(
           'Blocked!',
           'User has been blocked.',
           'success'
         )
       }
-    })
-    this.AllUsers(this.page);
+    }).then(()=>this.AllUsers(this.page))
    
   }
-  blockBlog(id:string){
+  blockBlog(id:string,type:number){
     swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -92,63 +92,22 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, block it!'
+      confirmButtonText: 'Yes, !'
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(id);
-        this.blogService.deleteBlockBlog(id).subscribe(res=>console.log(res))
+        this.blogService.deleteBlockBlog(id,type).subscribe(res=>console.log(res))
         swal.fire(
           'Blocked!',
           'Blog has been blocked.',
           'success'
         )
       }
-    })
+   ;
+  }).then(()=>this.toggleValue=false)
   }
-  unBlockBlog(id:string){
-    swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, block it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(id);
-        this.blogService.putUnBlockBlog(id).subscribe(res=>console.log(res))
-        swal.fire(
-          'Un-Blocked!',
-          'Blog has been Unblocked.',
-          'success'
-        )
-      }
-    })
-  }
-  unBlockUser(id:string){
-    swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, block it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(id);
-        this.userService.putUnblockUser(id).subscribe(res=>console.log(res))
-        swal.fire(
-          'UnBlocked!',
-          'User has been Unblocked.',
-          'success'
-        )
-      }
-    })
-    this.AllUsers(this.page);
 
-  }
+ 
   editBlog(id:string){
     let blogData;
      this.blogData.find((res:any)=>{

@@ -60,8 +60,8 @@ export const PATHS = {
       USER_GET: "/api/v1/user/myProfile",
       GUEST_GET: "/api/v1/user?id=",
       ALL_USERS:"/api/v1/user?pageNo=",
-      BLOCK_USER: "/api/v1/user/blockUser?id=",
-      UNBLOCK_USER: "/api/v1/user/unblockUser"
+      BLOCK_AND_UNBLOCK_USER: "/api/v1/user/blockUser?id=",
+     
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
@@ -76,8 +76,8 @@ export const PATHS = {
       BLOG_GET_BY_TAG:"/api/blog/?searchString=",
       BLOG_PUT: "/api/blog?id=",
       BLOG_DELETE: "/api/blog/?id=",
-      BLOG_BLOCK_BY_ADMIN:"/api/blog/blockBlog/?id=",
-      BLOG_UNBLOCK_BY_ADMIN:"/api/blog/unblockBlog",
+      BLOG_BLOCK_ANd_UNBLOCK_BY_ADMIN:"/api/blog/blockBlog/?id=",
+    
 
       MY_BLOG_GET:"/api/blog/myBlogs",
       FAMOUS_TAGS:"/api/blog/famousTags",

@@ -19,8 +19,8 @@
           <td>{{data?.phoneNo}}</td>
           <td>{{data?.email}}</td>
           <td>
-            <mat-icon type="button" *ngIf="!data?.isBlocked" (click)="blockUser(data?.userId)">lock_open</mat-icon>
-            <mat-icon type="button" *ngIf="data?.isBlocked" (click)="unBlockUser(data?.userId)">lock</mat-icon>
+            <mat-icon type="button" *ngIf="!data?.isBlocked" (click)="blockUser(data?.userId,1)">lock_open</mat-icon>
+            <mat-icon type="button" *ngIf="data?.isBlocked" (click)="blockUser(data?.userId,2)">lock</mat-icon>
 
             <mat-icon type="button" (click)="deleteUser()">delete</mat-icon>
 
@@ -67,9 +67,9 @@
           <td>{{blog?.tags}}</td>
           <td>
             <mat-icon type="button" (click)="editBlog(blog?.blog?.blogId)">edit</mat-icon>
-            <mat-icon type="button" *ngIf="blog?.blog?.isBlocked" (click)="unBlockBlog(blog?.blog?.blogId)">lock</mat-icon>
+            <mat-icon type="button" *ngIf="blog?.blog?.isBlocked" (click)="blockBlog(blog?.blog?.blogId,2)">lock</mat-icon>
             
-            <mat-icon type="button" *ngIf="!blog?.blog?.isBlocked" (click)="blockBlog(blog?.blog?.blogId)">lock_open</mat-icon>
+            <mat-icon type="button" *ngIf="!blog?.blog?.isBlocked" (click)="blockBlog(blog?.blog?.blogId,1)">lock_open</mat-icon>
             <mat-icon type="button" (click)="deleteBlog(blog?.blog?.blogId)">delete</mat-icon>
           </td>
         </tr>

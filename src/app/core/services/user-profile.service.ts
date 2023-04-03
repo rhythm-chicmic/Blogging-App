@@ -19,10 +19,8 @@ export class UserProfileService {
   getAllProfiles(page:number){
     return this.httpService.get(this.path+APIS.USER.ALL_USERS+page);
   }
-  deleteBlockUser(id:string){
-   return this.httpService.delete(this.path+APIS.USER.BLOCK_USER+id); 
+  deleteBlockUser(id:string,type:number){
+   return this.httpService.delete(this.path+APIS.USER.BLOCK_AND_UNBLOCK_USER+id+'&type='+type); 
   }
-  putUnblockUser(id:string){
-    return this.httpService.put(this.path+APIS.USER.UNBLOCK_USER,id)
-  }
+ 
 }
