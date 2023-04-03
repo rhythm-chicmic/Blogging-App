@@ -18,8 +18,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { GenralProfileComponent } from './genral-profile/genral-profile.component';
 import { BlogManagementComponent } from './blog-management/blog-management.component'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AuthGuardGuard } from 'src/app/core/guards/auth-guard.guard';
+import { NgxPaginationModule } from 'ngx-pagination'
 const routes:Routes=[
-  {path:PATHS.USER_PROFILE.USER_PAGE,component:UserPageComponent},
+  {path:PATHS.USER_PROFILE.USER_PAGE,canActivate:[AuthGuardGuard],component:UserPageComponent},
   {path:PATHS.USER_PROFILE.GENERAL_PAGE+'/:id',component:GenralProfileComponent},
   {path:PATHS.USER_PROFILE.BLOG_MANAGEMENT,component:BlogManagementComponent}
   
@@ -41,6 +43,7 @@ const routes:Routes=[
     FormsModule,
     MatInputModule,
     MatIconModule,
+    NgxPaginationModule,
     MatButtonModule,
     CommonModule,
     BrowserAnimationsModule,

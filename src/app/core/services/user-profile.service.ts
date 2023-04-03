@@ -16,10 +16,13 @@ export class UserProfileService {
   getGeneralProfile(id:string){
     return this.httpService.get(this.path+APIS.USER.GUEST_GET+id+'&pageNo=1');
   }
-  getAllProfiles(){
-    return this.httpService.get(this.path+APIS.USER.ALL_USERS);
+  getAllProfiles(page:number){
+    return this.httpService.get(this.path+APIS.USER.ALL_USERS+page);
   }
-  postBlockUser(id:string){
-   return this.httpService.post(this.path+APIS.USER.BLOCK_USER+id,''); 
+  deleteBlockUser(id:string){
+   return this.httpService.delete(this.path+APIS.USER.BLOCK_USER+id); 
+  }
+  putUnblockUser(id:string){
+    return this.httpService.put(this.path+APIS.USER.UNBLOCK_USER,id)
   }
 }

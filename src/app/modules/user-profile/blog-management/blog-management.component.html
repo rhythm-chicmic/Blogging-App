@@ -1,3 +1,4 @@
+<h1>Users Blogs</h1>
 <hr>
 <div class="wrapper">
   <div class="table-container">
@@ -18,15 +19,36 @@
           <td>{{data?.phoneNo}}</td>
           <td>{{data?.email}}</td>
           <td>
-            <mat-icon type="button" (click)="blockUser(data?.userId)">block</mat-icon>
+            <mat-icon type="button" *ngIf="!data?.isBlocked" (click)="blockUser(data?.userId)">lock_open</mat-icon>
+            <mat-icon type="button" *ngIf="data?.isBlocked" (click)="unBlockUser(data?.userId)">lock</mat-icon>
+
             <mat-icon type="button" (click)="deleteUser()">delete</mat-icon>
 
           </td>
         </tr>
       </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item ">
+          <button class="page-link"   (click)="onPreviousClick()" [disabled]="((page-1)<=0)?true:false">Previous</button>
+        </li>
+        <li class="page-item"><a class="page-link" >{{page}}</a></li>
+        <li class="page-item">
+          <button class="page-link" (click)="onNextClick()" [disabled]="totalPages<=page">Next</button>
+        </li>
+      </ul>
+    </nav>
   </div>
   <div class="table-container table-responsive">
+
+    <h2 *ngIf="!toggleValue">
+      Click on Users List To get Blogs
+    </h2>
+
+
+
+
     <table class="table table-bordered table-striped table-hover table-sm border-success" *ngIf="toggleValue">
       <thead>
         <tr>
@@ -45,10 +67,26 @@
           <td>{{blog?.tags}}</td>
           <td>
             <mat-icon type="button" (click)="editBlog(blog?.blog?.blogId)">edit</mat-icon>
+            <mat-icon type="button" *ngIf="blog?.blog?.isBlocked" (click)="unBlockBlog(blog?.blog?.blogId)">lock</mat-icon>
+            
+            <mat-icon type="button" *ngIf="!blog?.blog?.isBlocked" (click)="blockBlog(blog?.blog?.blogId)">lock_open</mat-icon>
             <mat-icon type="button" (click)="deleteBlog(blog?.blog?.blogId)">delete</mat-icon>
           </td>
         </tr>
       </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link"  tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" >1</a></li>
+        <li class="page-item"><a class="page-link" >2</a></li>
+        <li class="page-item"><a class="page-link" >3</a></li>
+        <li class="page-item">
+          <a class="page-link" >Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>

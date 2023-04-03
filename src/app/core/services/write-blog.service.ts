@@ -46,5 +46,10 @@ export class WriteBlogService {
   getRecommendedBlogs(){
     return this.httpService.get(this.path+APIS.WRITE_BLOG.RECOMMENDATIONS_BLOG);
   }
-  
+  deleteBlockBlog(id:string){
+    return this.httpService.delete(this.path+APIS.WRITE_BLOG.BLOG_BLOCK_BY_ADMIN+id);
+  }
+  putUnBlockBlog(id:string){
+    return this.httpService.put(this.path+APIS.WRITE_BLOG.BLOG_UNBLOCK_BY_ADMIN,id);
+  }
 }

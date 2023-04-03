@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit{
   })
   this.socketService.notificationArray$.subscribe((res:any)=>{
     this.notificationArray=res;
-    this.totalMessages=this.notificationArray.length;
+    this.totalMessages=this.notificationArray?.length;
   })
  }
  receiveMessage(){

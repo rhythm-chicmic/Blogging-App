@@ -23,12 +23,36 @@ export class BlogManagementComponent implements OnInit {
 constructor(private userService:UserProfileService,private blogService:WriteBlogService,private router:Router){}
   usersData:any;
   blogData:any;
+  page =1;
+  totalPages: number=5;
   toggleValue:boolean=false;
   ngOnInit(): void {
-    this.userService.getAllProfiles().subscribe((res:any)=>{
+    this.userService.getAllProfiles(this.page).subscribe((res:any)=>{
       this.usersData=res?.data
+      
     })
   }
+
+  AllBlogs(page:number){
+    this.userService.getAllProfiles(page).subscribe((res:any)=>{
+      this.usersData=res?.data
+  })}
+
+  onPreviousClick() {
+   
+    this.page--;
+      this.AllBlogs(this.page)
+    
+  }
+
+  onNextClick() {
+    this.page++;
+      this.AllBlogs(this.page)
+    
+  }
+
+
+
   toggleRow(id:any) {
 
     console.log(id)
@@ -49,9 +73,9 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       confirmButtonText: 'Yes, block it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.postBlockUser(id).subscribe(res=>console.log(res))
+        this.userService.deleteBlockUser(id).subscribe(res=>console.log(res))
         swal.fire(
-          'Deleted!',
+          'Blocked!',
           'User has been blocked.',
           'success'
         )
@@ -59,8 +83,69 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     })
    
   }
-
-
+  blockBlog(id:string){
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(id);
+        this.blogService.deleteBlockBlog(id).subscribe(res=>console.log(res))
+        swal.fire(
+          'Blocked!',
+          'Blog has been blocked.',
+          'success'
+        )
+      }
+    })
+  }
+  unBlockBlog(id:string){
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(id);
+        this.blogService.putUnBlockBlog(id).subscribe(res=>console.log(res))
+        swal.fire(
+          'Un-Blocked!',
+          'Blog has been Unblocked.',
+          'success'
+        )
+      }
+    })
+  }
+  unBlockUser(id:string){
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(id);
+        this.userService.putUnblockUser(id).subscribe(res=>console.log(res))
+        swal.fire(
+          'UnBlocked!',
+          'User has been Unblocked.',
+          'success'
+        )
+      }
+    })
+  }
   editBlog(id:string){
     let blogData;
      this.blogData.find((res:any)=>{

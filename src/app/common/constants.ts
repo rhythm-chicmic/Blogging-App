@@ -2,7 +2,7 @@ export const REGEX = {
     PASSWORD: /^(?=.*[A-Za-z])(?=(.*[\d]){1,})(?=.*?[^\w\s]).{8,}$/, //Contains 8 characters atleast 1 number, 1 alphabet, 1 special char
     EMAIL: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/,
     ONLY_ALPHABETS: /^([a-zA-Z]+)$/,
-    PHONE_NUMBER: /^[1-9]{1}[0-9]{9}$/,
+    PHONE_NUMBER: /^[6-9]\\d{9}$/,
     NUMBER_GREATER_THAN_0: /^([1-9][0-9]*(\.[0-9]+)?)|(0+[0-9]*[1-9][0-9]*$)/,
     NUMBER_GREATER_THAN_0_OR_EQUAL_TO_ZERO: /^[0-9]*$/,
     ALPHA_NUMERIC: /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/,
@@ -59,9 +59,9 @@ export const PATHS = {
       REGISTER:"/api/v1/user/registration",
       USER_GET: "/api/v1/user/myProfile",
       GUEST_GET: "/api/v1/user?id=",
-      ALL_USERS:"/api/v1/user?pageNo=1",
+      ALL_USERS:"/api/v1/user?pageNo=",
       BLOCK_USER: "/api/v1/user/blockUser?id=",
-      UNBLOCK_USER: "/api/v1/user/unblockUser?id="
+      UNBLOCK_USER: "/api/v1/user/unblockUser"
     },
     PASSWORD :{
       FORGOT_PASSWORD: "/api/v1/password/forgetPassword",
@@ -76,6 +76,9 @@ export const PATHS = {
       BLOG_GET_BY_TAG:"/api/blog/?searchString=",
       BLOG_PUT: "/api/blog?id=",
       BLOG_DELETE: "/api/blog/?id=",
+      BLOG_BLOCK_BY_ADMIN:"/api/blog/blockBlog/?id=",
+      BLOG_UNBLOCK_BY_ADMIN:"/api/blog/unblockBlog",
+
       MY_BLOG_GET:"/api/blog/myBlogs",
       FAMOUS_TAGS:"/api/blog/famousTags",
       RECOMMENDATIONS_BLOG:"/api/blog/randomBlogs"

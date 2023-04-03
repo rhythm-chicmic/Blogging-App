@@ -38,8 +38,7 @@ constructor() {
   reciveNoticeListner(){
     this.connection.on('refreshNotice',()=>{
       return this.connection.invoke('GetNotice').then((res:any)=>{
-        console.log(res.data)
-        this.notificationArray$.next(res.data);
+        this.notificationArray$?.next(res?.data);
 
       })
     })
