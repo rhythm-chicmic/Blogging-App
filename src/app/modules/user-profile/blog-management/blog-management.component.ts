@@ -20,52 +20,53 @@ import swal from 'sweetalert2'
   ],
 })
 export class BlogManagementComponent implements OnInit {
-constructor(private userService:UserProfileService,private blogService:WriteBlogService,private router:Router){
-  
-}
-  usersData:any;
-  blogData:any;
-  page =1;
-  totalPages: number=5;
-  toggleValue:boolean=false;
+  constructor(private userService: UserProfileService, private blogService: WriteBlogService, private router: Router) {
+
+  }
+  usersData: any;
+  blogData: any;
+  page = 1;
+  totalPages: number = 5;
+  toggleValue: boolean = false;
   ngOnInit(): void {
-    this.userService.getAllProfiles(this.page).subscribe((res:any)=>{
-      this.usersData=res?.data
-      
+    this.userService.getAllProfiles(this.page).subscribe((res: any) => {
+      this.usersData = res?.data
+
     })
   }
 
   /*Pagination Starts*/
-  AllUsers(page:number){
-    this.userService.getAllProfiles(page).subscribe((res:any)=>{
-      this.usersData=res?.data
-  })}
+  AllUsers(page: number) {
+    this.userService.getAllProfiles(page).subscribe((res: any) => {
+      this.usersData = res?.data
+    })
+  }
 
   onPreviousClick() {
-   
+
     this.page--;
-      this.AllUsers(this.page)
-    
+    this.AllUsers(this.page)
+
   }
 
   onNextClick() {
     this.page++;
-      this.AllUsers(this.page)
-    
+    this.AllUsers(this.page)
+
   }
-/*Pagination Ends*/
+  /*Pagination Ends*/
 
 
-  toggleRow(id:any) {
+  toggleRow(id: any) {
 
     console.log(id)
-    this.blogService.getBlogByUserId(id).subscribe((res:any)=>{
-      this.blogData=res?.data;
+    this.blogService.getBlogByUserId(id).subscribe((res: any) => {
+      this.blogData = res?.data;
     })
-    this.toggleValue=true;
+    this.toggleValue = true;
   }
 
-  blockUser(id:string,type:number){
+  blockUser(id: string, type: number) {
     swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -76,17 +77,21 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
       confirmButtonText: 'Yes!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.deleteBlockUser(id,type).subscribe(res=>console.log(res))
+        this.userService.deleteBlockUser(id, type).subscribe(res => console.log(res))
         swal.fire(
-          'Blocked!',
-          'User has been blocked.',
+          'Operation ',
+          'Successful',
           'success'
         )
       }
-    }).then(()=>this.AllUsers(this.page))
-   
+    }).then(() =>{
+
+     this.AllUsers(this.page)
+     this.toggleValue = false
+    })
+
   }
-  blockBlog(id:string,type:number){
+  blockBlog(id: string, type: number) {
     swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -98,30 +103,40 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(id);
-        this.blogService.deleteBlockBlog(id,type).subscribe(res=>console.log(res))
+        this.blogService.deleteBlockBlog(id, type).subscribe((res: any) => {
+          console.log(res)
+
+          if (res?.message === 'Blog creater is blocked') {
+            swal.fire(
+              'User Blocked',
+              'Please unblock the User',
+              'warning'
+            )
+          }
+        })
+
         swal.fire(
-          'Blocked!',
-          'Blog has been blocked.',
+          'Operation ',
+          'Successful',
           'success'
         )
-      }
-   ;
-  }).then(()=>this.toggleValue=false)
+      };
+    }).then(() => this.toggleValue = false)
   }
 
- 
-  editBlog(id:string){
+
+  editBlog(id: string) {
     let blogData;
-     this.blogData.find((res:any)=>{
-      if(res?.blog?.blogId===id){
-        blogData= res;
-    this.router.navigateByUrl(PATHS.MAIN.BLOG_WRITE,{state:{data:blogData}})
+    this.blogData.find((res: any) => {
+      if (res?.blog?.blogId === id) {
+        blogData = res;
+        this.router.navigateByUrl(PATHS.MAIN.BLOG_WRITE, { state: { data: blogData } })
 
       }
-     })
+    })
 
   }
-  deleteBlog(id:string){
+  deleteBlog(id: string) {
     swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -143,12 +158,12 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     })
 
   }
-  getAllBlogs(){
-    this.blogService?.getUserBlogs().subscribe((res:any)=>{
-      this.blogData=res?.data;
+  getAllBlogs() {
+    this.blogService?.getUserBlogs().subscribe((res: any) => {
+      this.blogData = res?.data;
     })
   }
-  deleteUser(){
+  deleteUser() {
     swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
