@@ -4,12 +4,18 @@ import { forgotPasswordModel, googleLoginModel, loginModel, resetPasswordModel, 
 import { APIS, STORAGE_KEYS } from 'src/app/common/constants';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { SocketService } from './socket.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
   private path = environment.BASE_URL;
-  constructor(private httpService:HttpClient) {}
+  constructor(private httpService:HttpClient,private socketService:SocketService) {
+    this.socketService.startConnection().then(()=>{
+      console.log('Connected');
+      this.socketService.reciveNoticeListner();
+    }).catch()
+  }
 
   isLoggedin$ = new BehaviorSubject(localStorage.getItem('token')?true:false);
 
