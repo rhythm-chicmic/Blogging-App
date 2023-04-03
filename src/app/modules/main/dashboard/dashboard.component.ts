@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SocketService } from 'src/app/core/services/socket.service';
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +7,10 @@ import { SocketService } from 'src/app/core/services/socket.service';
 })
 export class DashboardComponent {
 constructor(private socketService:SocketService){
-  this.socketService.startConnection().then((response:any)=>{
+  this.socketService.startConnection().then(()=>{
     console.log('Connected');
     this.socketService.reciveNoticeListner();
-  }).catch((err)=>console.log(err))
+  }).catch()
 }
+
 }

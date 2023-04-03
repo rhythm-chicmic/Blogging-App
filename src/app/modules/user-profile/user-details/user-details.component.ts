@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserProfileService } from 'src/app/core/services/user-profile.service';
 import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute } from "@angular/router";
@@ -12,7 +12,8 @@ import { SocketService } from 'src/app/core/services/socket.service';
 export class UserDetailsComponent implements OnInit{
   userDetails:any;
   id:string=''
-  constructor(private userProfileService:UserProfileService,private route:ActivatedRoute,private socketService:SocketService){}
+  constructor(private userProfileService:UserProfileService,private route:ActivatedRoute,private socketService:SocketService){
+  }
   env = environment.BASE_URL+'/'
   demo_img="https://material.angular.io/assets/img/examples/shiba2.jpg"
   ngOnInit(){
@@ -36,5 +37,7 @@ export class UserDetailsComponent implements OnInit{
      
     }
   }
-
+ 
 }
+
+

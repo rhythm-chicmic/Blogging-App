@@ -20,7 +20,9 @@ import swal from 'sweetalert2'
   ],
 })
 export class BlogManagementComponent implements OnInit {
-constructor(private userService:UserProfileService,private blogService:WriteBlogService,private router:Router){}
+constructor(private userService:UserProfileService,private blogService:WriteBlogService,private router:Router){
+  
+}
   usersData:any;
   blogData:any;
   page =1;
