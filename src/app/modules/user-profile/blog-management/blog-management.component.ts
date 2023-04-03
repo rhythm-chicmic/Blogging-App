@@ -33,7 +33,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
     })
   }
 
-  AllBlogs(page:number){
+  AllUsers(page:number){
     this.userService.getAllProfiles(page).subscribe((res:any)=>{
       this.usersData=res?.data
   })}
@@ -41,13 +41,13 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
   onPreviousClick() {
    
     this.page--;
-      this.AllBlogs(this.page)
+      this.AllUsers(this.page)
     
   }
 
   onNextClick() {
     this.page++;
-      this.AllBlogs(this.page)
+      this.AllUsers(this.page)
     
   }
 
@@ -81,6 +81,7 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
         )
       }
     })
+    this.AllUsers(this.page);
    
   }
   blockBlog(id:string){
@@ -145,6 +146,8 @@ constructor(private userService:UserProfileService,private blogService:WriteBlog
         )
       }
     })
+    this.AllUsers(this.page);
+
   }
   editBlog(id:string){
     let blogData;
